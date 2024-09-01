@@ -1,4 +1,5 @@
 package Simulation;
 
-public class Actions {
+public interface Actions {
+     void execute(Map map);
 }
