@@ -27,4 +27,15 @@ public abstract class Creature  extends Entity{
         return hp;
     }
 
+    @Override
+    public String toString() {
+
+        return "Класс: " + getClass().getSimpleName() + "\n"
+                + super.toString() + "\n" +
+               "Здоровье: " + hp + "\n" +
+               "Скорость: " + speed + "\n";
+    }
+
+
+
 }
