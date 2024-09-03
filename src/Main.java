@@ -8,7 +8,7 @@ public class Main {
         map.setupDefaultEntityPositions();
 
         MapConsoleRenderer renderer1 = new MapConsoleRenderer();
-        renderer1.rendere(map);
+        renderer1.renderer(map);
 
         int a = 123;
 

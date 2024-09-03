@@ -6,6 +6,6 @@ public class Three extends Entity {
     // статичный объект
 
     public Three(Coordinates coordinates) {
-        super(coordinates);
+        super(coordinates, Types.Three);
     }
 }
