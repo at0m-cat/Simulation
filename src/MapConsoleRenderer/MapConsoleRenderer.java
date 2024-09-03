@@ -5,8 +5,8 @@ import MapSetting.*;
 
 public class MapConsoleRenderer {
 
-    //    public static final String ANSI_LAVENDER = "\u001b[33;47m";
-    public static final String ANSI_LAVENDER = "\u001b[37;46m";
+        public static final String ANSI_GREY = "\u001b[33;47m";
+    public static final String ANSI_LAVENDER = "\u001b[0;100m";
     public static final String ANSI_RESET_COLOR = "\u001B[0m";
 
     public void renderer(Map map) {
@@ -30,23 +30,36 @@ public class MapConsoleRenderer {
     private String colorizeSprite(String sprite, Entity entity) {
         String result = sprite;
         if (entity == null) {
-            return result = "-" + result;
+            return result = ANSI_GREY + result + "\uD83C\uDF42" + result;
         }
         switch (entity.type) {
-            case Rock -> result = "R" + result;
-            case Three -> result = "T" + result;
-            case Grass -> result = "G" + result;
-            case Herbivore -> result = "H" + result;
-            case Predator -> result = "P" + result;
+            case Rock -> result = ANSI_LAVENDER + result + "\uD83D\uDDFF" + result;
+            case Three -> result = ANSI_LAVENDER + result + "\uD83C\uDF33" + result;
+            case Grass -> result = ANSI_LAVENDER + result + "\uD83C\uDF3F" + result;
+            case Herbivore -> result = ANSI_LAVENDER + result + "\uD83D\uDC39" + result;
+            case Predator -> result = ANSI_LAVENDER + result + "\uD83E\uDD81" + result;
         }
         return result;
     }
 
+//    private String figureSprite(Entity entity){
+//        String result = "";
+//        switch (entity.type){
+//            case Rock ->  result = "\uD83D\uDDFF";
+//            case Three -> result = "\uD83C\uDF33";
+//            case Grass -> result = "\uD83C\uDF3F";
+//            case Herbivore -> result = "\uD83D\uDC39";
+//            case Predator ->  result = "\uD83E\uDD81";
+//
+//        }
+//        return result;
+//    }
+
     private String getSpriteForEmptyMap(Coordinates coordinates, Map map) {
-        return colorizeSprite("   ", null);
+        return colorizeSprite(" ", null);
     }
 
     private String getEntitySprite(Entity entity) {
-        return colorizeSprite("   ", entity);
+        return colorizeSprite(" ", entity);
     }
 }
