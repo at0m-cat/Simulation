@@ -1,4 +1,4 @@
-package Simulation;
+import MapSetting.Map;
 
 import java.util.List;
 
@@ -6,7 +6,6 @@ public class Simulation {
 
     private Map map;
     private int moveCounter;
-    private Renderer renderer;
     private List<Actions> initActions;
     private List<Actions> turnActions;
 
@@ -36,25 +35,5 @@ public class Simulation {
     //  Пример - передвижение существ, добавить травы или травоядных,
     //  если их осталось слишком мало
 
-    public void startSimulation(){
-        for (Actions actions : initActions){
-            actions.execute(map);
-        }
-        while (true){
-            nextTurn();
-        }
-    }
 
-    public void nextTurn(){
-        for (Actions actions : turnActions){
-            actions.execute(map);
-        }
-
-        renderer.render(map);
-        moveCounter++;
-    }
-
-    public void pauseSimulation(){
-
-    }
 }
