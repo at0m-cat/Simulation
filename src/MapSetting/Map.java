@@ -31,18 +31,6 @@ public class Map {
         return !entities.containsKey(coordinates);
     }
 
-    public Types getEntityTypeCoordinate(Coordinates coordinates) {
-        Entity entity = entities.get(coordinates);
-        if (entity == null) {
-            return null;
-        }
-        return entity.type;
-    }
-
-    public Coordinates getCoordinates(Entity entity) {
-        return entities.containsKey(entity.coordinates) ? entity.coordinates : null;
-    }
-
     public Entity getEntityCoordinate(Coordinates coordinates) {
         return entities.get(coordinates);
     }

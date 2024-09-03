@@ -16,10 +16,10 @@ public class MapConsoleRenderer {
                 Coordinates coordinates = new Coordinates(horizontal, vertical);
 
                 if (map.isSquareEmpty(coordinates)) {
-                    line += getSpriteForEmptyMap(coordinates, map);
+                    line = "%s%s".formatted(line, getSpriteForEmptyMap(coordinates, map));
                 } else {
                     Entity entity = map.getEntityCoordinate(coordinates);
-                    line += getEntitySprite(entity, map);
+                    line = "%s%s".formatted(line, getEntitySprite(entity));
                 }
             }
             line += ANSI_RESET_COLOR;
@@ -29,8 +29,8 @@ public class MapConsoleRenderer {
 
     private String colorizeSprite(String sprite, Entity entity) {
         String result = sprite;
-        if (entity == null){
-            return  result = "-" + result;
+        if (entity == null) {
+            return result = "-" + result;
         }
         switch (entity.type) {
             case Rock -> result = "R" + result;
@@ -46,7 +46,7 @@ public class MapConsoleRenderer {
         return colorizeSprite("   ", null);
     }
 
-    private String getEntitySprite(Entity entity, Map map) {
+    private String getEntitySprite(Entity entity) {
         return colorizeSprite("   ", entity);
     }
 }
