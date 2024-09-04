@@ -1,10 +1,10 @@
-import MapSetting.Map;
+import MapSetting.GameMap;
 
 import java.util.List;
 
 public class Simulation {
 
-    private Map map;
+    private GameMap gameMap;
     private int moveCounter;
     private List<Actions> initActions;
     private List<Actions> turnActions;

@@ -1,14 +1,14 @@
 import MapConsoleRenderer.MapConsoleRenderer;
-import MapSetting.Map;
+import MapSetting.GameMap;
 
 public class Main {
     public static void main(String[] args) {
 
-        Map map = new Map();
-        map.setupDefaultEntityPositions();
+        GameMap gameMap = new GameMap();
+        gameMap.setupDefaultEntityPositions();
 
         MapConsoleRenderer renderer1 = new MapConsoleRenderer();
-        renderer1.renderer(map);
+        renderer1.renderer(gameMap);
 
         int a = 123;
 

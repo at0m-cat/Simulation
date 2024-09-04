@@ -1,5 +1,5 @@
-import MapSetting.Map;
+import MapSetting.GameMap;
 
 public interface Actions {
-     void execute(Map map);
+     void execute(GameMap gameMap);
 }

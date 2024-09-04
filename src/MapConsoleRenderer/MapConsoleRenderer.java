@@ -6,16 +6,16 @@ import static MapConsoleRenderer.AnsiSprite.*;
 
 public class MapConsoleRenderer {
 
-    public void renderer(Map map) {
-        for (int horizontal = 15; horizontal >= 1; horizontal--) {
+    public void renderer(GameMap gameMap) {
+        for (int horizontal = gameMap.HORIZONTAL_MAX; horizontal >= 1; horizontal--) {
             String line = "";
-            for (int vertical = 20; vertical >= 1; vertical--) {
+            for (int vertical = gameMap.VERTICAL_MAX; vertical >= 1; vertical--) {
                 Coordinates coordinates = new Coordinates(horizontal, vertical);
 
-                if (map.isSquareEmpty(coordinates)) {
+                if (gameMap.isSquareEmpty(coordinates)) {
                     line = "%s%s".formatted(line, getSprite(null));
                 } else {
-                    Entity entity = map.getEntityCoordinate(coordinates);
+                    Entity entity = gameMap.getEntityCoordinate(coordinates);
                     line = "%s%s".formatted(line, getSprite(entity));
                 }
             }
