@@ -21,6 +21,7 @@ public class Map {
             setEntities(new Coordinates(7, i), new Three(new Coordinates(7, i)));
             setEntities(new Coordinates(3, i), new Rock(new Coordinates(3, i)));
             setEntities(new Coordinates(5, i), new Herbivore(new Coordinates(5, i), 3.3, 100));
+            setEntities(new Coordinates(6, i), new Predator(new Coordinates(6, i), 3.3, 100, 44));
         }
     }
 
