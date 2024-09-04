@@ -2,7 +2,6 @@ package MapConsoleRenderer;
 
 import Entity.*;
 import MapSetting.*;
-
 import static MapConsoleRenderer.AnsiSprite.*;
 
 public class MapConsoleRenderer {
