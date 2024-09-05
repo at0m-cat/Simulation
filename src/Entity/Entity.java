@@ -7,13 +7,13 @@ abstract public class Entity {
 
     public Coordinates coordinates;
     public final Types type;
-    protected boolean isQuantity;
+    public boolean isStatic;
 
 
-    public Entity(Coordinates coordinates, Types type) {
+    public Entity(Coordinates coordinates, Types type, boolean isStatic) {
         this.coordinates = coordinates;
         this.type = type;
-        this.isQuantity = true;
+        this.isStatic = isStatic;
     }
 
 }

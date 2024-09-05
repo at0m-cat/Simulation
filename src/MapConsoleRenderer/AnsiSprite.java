@@ -12,7 +12,7 @@ class AnsiSprite {
     static final String ANSI_RESET_COLOR = "\u001B[0m";
 
     static final String ANSI_SMILE_NULL = "\uD83C\uDFFD";
-    static final String ANSI_SMILE_ROCK = "\uD83D\uDDFF";
+    static final String ANSI_SMILE_ROCK = "\uD83D\uDD32";
     static final String ANSI_SMILE_GRASS = "\uD83C\uDF3F";
     static final String ANSI_SMILE_PREDATOR = "\uD83E\uDD81";
     static final String ANSI_SMILE_HERBIVORE = "\uD83D\uDC39";

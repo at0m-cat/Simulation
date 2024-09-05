@@ -28,11 +28,11 @@ public class GameMap {
 
         setEntities(new Coordinates(1, 1),
                 new Predator(
-                new Coordinates(1,1),
-                2,
-                100,
-                77
-        ));
+                        new Coordinates(1, 1),
+                        2,
+                        100,
+                        77
+                ));
 
         setEntities(new Coordinates(10, 12), new Herbivore(
                 new Coordinates(10, 12),
@@ -86,20 +86,11 @@ public class GameMap {
         if (a || b || c || d) {
             return false;
         }
-        if (isObstacle(coordinates)) {
-            return false;
-        }
-        return true;
+        return !isObstacle(coordinates);
     }
 
     public boolean isObstacle(Coordinates coordinates) {
         Entity entity = getEntityCoordinate(coordinates);
-
-        switch (entity.type) {
-            case Grass, Herbivore, Predator, Three, Rock:
-                return false;
-            case null:
-                return true;
-        }
+        return !entity.isStatic;
     }
 }
