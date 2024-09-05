@@ -1,6 +1,7 @@
 package MapConsoleRenderer;
 
 import Entity.*;
+import EntityMotion.aStar;
 import MapSetting.*;
 import static MapConsoleRenderer.AnsiSprite.*;
 
@@ -17,6 +18,7 @@ public class MapConsoleRenderer {
                 } else {
                     Entity entity = gameMap.getEntityCoordinate(coordinates);
                     line = "%s%s".formatted(line, getSprite(entity));
+
                 }
             }
             line += ANSI_RESET_COLOR;
