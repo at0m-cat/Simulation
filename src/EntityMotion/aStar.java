@@ -47,7 +47,7 @@ public class aStar {
         while (!openList.isEmpty()) {
             Node currentNode = openList.poll();
             Coordinates currentCoordinates = currentNode.coordinates;
-            closedList.add(currentCoordinates);
+
             if (currentCoordinates.equals(goal)) {
                 return constructPath(currentNode);
             }

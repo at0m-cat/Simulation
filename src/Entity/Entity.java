@@ -9,12 +9,18 @@ abstract public class Entity {
     public final Types type;
     public boolean isStatic;
 
-
     public Entity(Coordinates coordinates, Types type, boolean isStatic) {
         this.coordinates = coordinates;
         this.type = type;
         this.isStatic = isStatic;
     }
 
+    public double distanceTo(Coordinates goal) {
+        return Math.abs(coordinates.vertical - goal.vertical) + Math.abs(coordinates.horizontal - goal.horizontal);
+    }
+
+    public Coordinates getCoordinates() {
+        return this.coordinates;
+    }
 }
 

@@ -3,7 +3,9 @@ package MapSetting;
 import Entity.*;
 import EntityMotion.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
 
 public class GameMap {
@@ -17,6 +19,16 @@ public class GameMap {
     public void setEntities(Coordinates coordinates, Entity entity) {
         entities.put(coordinates, entity);
         entity.coordinates = coordinates;
+    }
+
+    public List<Creature> getAllCreatures() {
+        List<Creature> creatures = new ArrayList<>();
+        for (Entity entity : entities.values()) {
+            if (entity instanceof Creature) {
+                creatures.add((Creature) entity);
+            }
+        }
+        return creatures;
     }
 
     public int getRandomPosition() {
@@ -53,6 +65,7 @@ public class GameMap {
         setEntities(new Coordinates(11, 11), new Rock(new Coordinates(11, 11)));
 
 
+
 //        for (int i = 0; i < 9; i++) {
 //            setEntities(new Coordinates(1, i), new Grass(new Coordinates(1, i)));
 //            setEntities(new Coordinates(8, i), new Three(new Coordinates(8, i)));
@@ -78,12 +91,8 @@ public class GameMap {
     }
 
     public boolean isValidCoordinate(Coordinates coordinates) {
-        boolean a = coordinates.horizontal < 0;
-        boolean b = coordinates.vertical < 0;
-        boolean c = coordinates.vertical > VERTICAL_MAX;
-        boolean d = coordinates.horizontal > HORIZONTAL_MAX;
-
-        if (a || b || c || d) {
+        if (coordinates.horizontal < 0 || coordinates.horizontal >= HORIZONTAL_MAX ||
+                coordinates.vertical < 0 || coordinates.vertical >= VERTICAL_MAX) {
             return false;
         }
         return !isObstacle(coordinates);
@@ -91,6 +100,9 @@ public class GameMap {
 
     public boolean isObstacle(Coordinates coordinates) {
         Entity entity = getEntityCoordinate(coordinates);
+        if (entity == null) {
+            return false; // Если объект отсутствует, считаем, что препятствия нет
+        }
         return !entity.isStatic;
     }
 }

@@ -1,5 +1,10 @@
 package Entity;
+import EntityMotion.aStar;
 import MapSetting.*;
+
+import java.time.chrono.HijrahDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Predator extends Creature {
 
@@ -15,5 +20,34 @@ public class Predator extends Creature {
         this.attackPower = attackPower;
     }
 
+    public void setPosition(Coordinates newCoordinates) {
+        this.coordinates = newCoordinates;
+    }
 
+
+    @Override
+    public void makeMove(GameMap map, List<Creature> creatures) {
+        List<Creature> allCreatures = map.getAllCreatures();
+
+        List<Creature> herbivores = new ArrayList<>();
+        for (Creature c : allCreatures) {
+            if (c instanceof Herbivore) {
+                herbivores.add(c);
+            }
+        }
+
+        if (!herbivores.isEmpty()) {
+            Creature nearestHerbivore = findNearestGoal(herbivores);
+            if (nearestHerbivore != null) {
+                aStar pathfinder = new aStar();
+                List<Coordinates> path = pathfinder.aStarSearch(map, this.coordinates, nearestHerbivore.getCoordinates());
+
+                if (!path.isEmpty() && path.size() > 1) {
+                    setPosition(path.get(1)); // Двигаемся к следующей позиции
+                }
+            }
+        } else {
+            System.out.println("Нет травоядных для преследования.");
+        }
+    }
 }
