@@ -5,6 +5,7 @@ import MapSetting.*;
 import java.time.chrono.HijrahDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class Predator extends Creature {
 
@@ -22,6 +23,10 @@ public class Predator extends Creature {
 
     public void setPosition(Coordinates newCoordinates) {
         this.coordinates = newCoordinates;
+    }
+
+    public Set<CoordinatesShift> getAvailableMove(){
+        return null;
     }
 
 

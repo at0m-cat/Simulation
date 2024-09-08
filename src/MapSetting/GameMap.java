@@ -21,6 +21,8 @@ public class GameMap {
         entity.coordinates = coordinates;
     }
 
+    // сдвиг координат сделать
+
     public List<Creature> getAllCreatures() {
         List<Creature> creatures = new ArrayList<>();
         for (Entity entity : entities.values()) {

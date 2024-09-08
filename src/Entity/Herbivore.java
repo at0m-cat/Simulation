@@ -1,6 +1,8 @@
 package Entity;
 import MapSetting.*;
 
+import java.util.Set;
+
 
 public class Herbivore extends Creature {
 
@@ -10,6 +12,10 @@ public class Herbivore extends Creature {
 
     public Herbivore(Coordinates coordinates, double speed, double hp) {
         super(coordinates, Types.Herbivore, speed, hp);
+    }
+
+    public Set<CoordinatesShift>getAvailableMove(){
+        return null;
     }
 
 }

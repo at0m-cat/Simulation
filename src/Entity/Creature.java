@@ -4,6 +4,7 @@ import EntityMotion.aStar;
 import MapSetting.*;
 
 import java.util.List;
+import java.util.Set;
 
 abstract public class Creature extends Entity {
 
@@ -16,9 +17,13 @@ abstract public class Creature extends Entity {
         this.hp = hp;
     }
 
+
+
     private void setPosition(Coordinates newCoordinates) {
         this.coordinates = newCoordinates;
     }
+
+    protected abstract Set<CoordinatesShift> getAvailableMove();
 
 
     public void makeMove(GameMap map, List<Creature> creatures) {
