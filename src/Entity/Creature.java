@@ -23,7 +23,7 @@ abstract public class Creature extends Entity {
         this.coordinates = newCoordinates;
     }
 
-    protected abstract Set<CoordinatesShift> getAvailableMove();
+    protected abstract Set<CoordinatesShift> getCreatureMoves();
 
 
     public void makeMove(GameMap map, List<Creature> creatures) {

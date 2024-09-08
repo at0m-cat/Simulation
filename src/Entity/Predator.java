@@ -25,7 +25,7 @@ public class Predator extends Creature {
         this.coordinates = newCoordinates;
     }
 
-    public Set<CoordinatesShift> getAvailableMove(){
+    public Set<CoordinatesShift> getCreatureMoves(){
         return null;
     }
 

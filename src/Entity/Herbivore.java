@@ -14,7 +14,7 @@ public class Herbivore extends Creature {
         super(coordinates, Types.Herbivore, speed, hp);
     }
 
-    public Set<CoordinatesShift>getAvailableMove(){
+    public Set<CoordinatesShift> getCreatureMoves(){
         return null;
     }
 
