@@ -1,7 +1,7 @@
 package MapConsoleRenderer;
 
 import Entity.*;
-import EntityMotion.aStar;
+//import EntityMotion.aStar;
 import MapSetting.*;
 import static MapConsoleRenderer.AnsiSprite.*;
 

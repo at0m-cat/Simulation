@@ -1,10 +1,9 @@
 package Entity;
 
-import EntityMotion.aStar;
+//import EntityMotion.aStar;
 import MapSetting.*;
 
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 abstract public class Creature extends Entity {
 
@@ -18,40 +17,53 @@ abstract public class Creature extends Entity {
     }
 
 
-
-    private void setPosition(Coordinates newCoordinates) {
-        this.coordinates = newCoordinates;
+    public double getSpeed() {
+        return speed;
     }
 
-    protected abstract Set<CoordinatesShift> getCreatureMoves();
-
-
-    public void makeMove(GameMap map, List<Creature> creatures) {
-        Creature nearestTarget = findNearestGoal(creatures);
-
-        if (nearestTarget == null) {
-            System.out.println("Нет доступной цели для движения.");
-            return;
-        }
-
-        aStar pathfinder = new aStar();
-        List<Coordinates> path = pathfinder.aStarSearch(map, this.coordinates, nearestTarget.coordinates);
-
-        if (!path.isEmpty() && path.size() > 1) {
-            setPosition(path.get(1));
-        }
+    public void setSpeed(double speed) {
+        this.speed = speed;
     }
 
-    public Creature findNearestGoal(List<Creature> creatures) {
-        Creature nearest = null;
-        double minDistance = Double.MAX_VALUE;
-        for (Creature creature : creatures) {
-            double distance = distanceTo(creature.getCoordinates());
-            if (distance < minDistance) {
-                minDistance = distance;
-                nearest = creature;
+    public double getHp() {
+        return hp;
+    }
+
+    public void setHp(double hp) {
+        this.hp = hp;
+    }
+
+    private boolean isSquareAvailableForMove(Coordinates coordinates, GameMap map) {
+        return map.isSquareEmpty(coordinates);
+    }
+
+    protected Set<CoordinatesShift> getCreatureMoves() {
+        return new HashSet<>(Arrays.asList(
+                new CoordinatesShift(1, 0),
+                new CoordinatesShift(-1, 0),
+                new CoordinatesShift(0, 1),
+                new CoordinatesShift(0, -1)
+        ));
+    }
+
+    public ArrayList<Coordinates> getAvailableMoves(GameMap map) {
+//        Set<Coordinates> result = new HashSet<>();
+        ArrayList<Coordinates> moves = new ArrayList<>();
+        for (CoordinatesShift shift : getCreatureMoves()) {
+            if (coordinates.canShift(shift)) {
+                Coordinates newCoordinates = coordinates.shift(shift);
+
+                if (isSquareAvailableForMove(newCoordinates, map)) {
+//                    result.add(newCoordinates);
+                    moves.add(newCoordinates);
+                }
             }
         }
-        return nearest;
+
+        return moves;
     }
+
+
+    protected abstract void makeMove(GameMap map);
+
 }

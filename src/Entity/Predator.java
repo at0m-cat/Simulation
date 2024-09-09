@@ -1,18 +1,9 @@
 package Entity;
 import EntityMotion.aStar;
 import MapSetting.*;
-
-import java.time.chrono.HijrahDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Predator extends Creature {
-
-    // Хищник
-    // - переместиться (в сторону травоядного - к жертве)
-    // - атаковать травоядное. ХП травоядного уменьшается на силу атаки хищника,
-    // если значение ХП травоядного уменьшается до 0, то травоядное исчезает.
 
     private double attackPower;
 
@@ -25,34 +16,22 @@ public class Predator extends Creature {
         this.coordinates = newCoordinates;
     }
 
-    public Set<CoordinatesShift> getCreatureMoves(){
-        return null;
+    @Override
+    public ArrayList<Coordinates> getAvailableMoves(GameMap map) {
+        return super.getAvailableMoves(map);
     }
-
 
     @Override
-    public void makeMove(GameMap map, List<Creature> creatures) {
-        List<Creature> allCreatures = map.getAllCreatures();
+    public void makeMove(GameMap map) {
+        List<Coordinates> availableMoves = getAvailableMoves(map);
+        ArrayList<Herbivore> herbivores = map.getAllHerbivore();
+        Collections.sort(herbivores);
 
-        List<Creature> herbivores = new ArrayList<>();
-        for (Creature c : allCreatures) {
-            if (c instanceof Herbivore) {
-                herbivores.add(c);
-            }
-        }
-
-        if (!herbivores.isEmpty()) {
-            Creature nearestHerbivore = findNearestGoal(herbivores);
-            if (nearestHerbivore != null) {
-                aStar pathfinder = new aStar();
-                List<Coordinates> path = pathfinder.aStarSearch(map, this.coordinates, nearestHerbivore.getCoordinates());
-
-                if (!path.isEmpty() && path.size() > 1) {
-                    setPosition(path.get(1)); // Двигаемся к следующей позиции
-                }
-            }
-        } else {
-            System.out.println("Нет травоядных для преследования.");
-        }
+        // Проверить какая цель ближайшая
+        // Создать отдельный класс, отправить туда массив целей
+        // - посчитать расстояние до цели
+        // - учесть препятствия
+        // - вернуть шаг в сторону цели
     }
+
 }

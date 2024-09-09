@@ -2,8 +2,6 @@ package Entity;
 import MapSetting.*;
 
 abstract public class Entity {
-    // Корневой АБСТРАКТНЫЙ класс для всех существ
-    // нельзя создавать объект на основе этого класса, только наследовать
 
     public Coordinates coordinates;
     public final Types type;
@@ -15,8 +13,8 @@ abstract public class Entity {
         this.isStatic = isStatic;
     }
 
-    public double distanceTo(Coordinates goal) {
-        return Math.abs(coordinates.vertical - goal.vertical) + Math.abs(coordinates.horizontal - goal.horizontal);
+    public Types getType() {
+        return type;
     }
 
     public Coordinates getCoordinates() {

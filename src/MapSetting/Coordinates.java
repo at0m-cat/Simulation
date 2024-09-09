@@ -1,6 +1,9 @@
 package MapSetting;
 
-import java.util.Objects;
+import Entity.Entity;
+//import EntityMotion.Node;
+
+import java.util.*;
 
 public class Coordinates {
 
@@ -10,6 +13,31 @@ public class Coordinates {
     public Coordinates(Integer horizontal, Integer vertical) {
         this.horizontal = horizontal;
         this.vertical = vertical;
+    }
+
+
+    public double distanceTo (Entity entity, GameMap map) {
+        Coordinates goal = entity.getCoordinates();
+        return Math.abs((this.horizontal - goal.horizontal) + (this.vertical - goal.vertical));
+    }
+
+
+    public Coordinates shift(CoordinatesShift shift) {
+        return new Coordinates(this.horizontal + shift.horizontalShift,
+                this.vertical + shift.verticalShift);
+    }
+
+    public boolean canShift(CoordinatesShift shift) {
+        int v = this.vertical + shift.verticalShift;
+        int h = this.horizontal + shift.horizontalShift;
+
+        if ((h <= 0) || (h > GameMap.HORIZONTAL_MAX)) return false;
+        if ((v <= 0) || (v > GameMap.VERTICAL_MAX)) return false;
+        return true;
+    }
+
+    public Set<Coordinates> getAvailableCoordinates() {
+        return null;
     }
 
     @Override
@@ -23,5 +51,9 @@ public class Coordinates {
     @Override
     public int hashCode() {
         return Objects.hash(horizontal, vertical);
+    }
+    @Override
+    public String toString() {
+        return "vertical: " + vertical + ", horizontal: " + horizontal;
     }
 }
