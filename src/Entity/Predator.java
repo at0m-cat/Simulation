@@ -12,10 +12,6 @@ public class Predator extends Creature {
         this.attackPower = attackPower;
     }
 
-    public void setPosition(Coordinates newCoordinates) {
-        this.coordinates = newCoordinates;
-    }
-
     @Override
     public ArrayList<Coordinates> getAvailableMoves(GameMap map) {
         return super.getAvailableMoves(map);
@@ -34,4 +30,13 @@ public class Predator extends Creature {
         // - вернуть шаг в сторону цели
     }
 
+
+
+    public void setAttackPower(double attackPowerPercent){
+        this.attackPower = attackPowerPercent;
+    }
+
+    public double getAttackPower(){
+        return attackPower;
+    }
 }

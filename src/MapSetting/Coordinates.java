@@ -17,6 +17,11 @@ public class Coordinates {
 
 
     public double distanceTo (Entity entity, GameMap map) {
+        // рассчитать расстояние с учетом преград,
+        // можно попробовать считать дистанцию через поиск в ширину
+        // возвращает путь
+
+
         Coordinates goal = entity.getCoordinates();
         return Math.abs((this.horizontal - goal.horizontal) + (this.vertical - goal.vertical));
     }

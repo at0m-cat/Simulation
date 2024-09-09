@@ -18,5 +18,15 @@ public class Herbivore extends Creature implements Comparable<Herbivore> {
     @Override
     protected void makeMove(GameMap map) {
 
+        // написать логику
+
+    }
+
+    public void setHp(double hp) {
+        this.hp = hp;
+    }
+
+    public double getHp() {
+        return hp;
     }
 }
