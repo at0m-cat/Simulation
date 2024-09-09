@@ -1,6 +1,6 @@
 package Entity;
 
-public enum Types {
+public enum FamilyType {
     Herbivore,
     Predator,
     Rock,

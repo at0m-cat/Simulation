@@ -19,6 +19,7 @@ public class GameMap {
 
     public void setEntities(Coordinates coordinates, Entity entity) {
         entities.put(coordinates, entity);
+        entity.coordinates = coordinates;
     }
 
     public ArrayList<Creature> getAllCreatures() {
@@ -92,40 +93,42 @@ public class GameMap {
 //        }
     }
 
+    public boolean isSquareEmptyForMove(Coordinates coordinates) {
+
+        // используется в aStar для проверки валидности ячейки
+
+        Entity e = entities.get(coordinates);
+        if (e == null) {
+            return true;
+        }
+        if (e.target.equals(Target.YES)) {
+            return true;
+        }
+        return !entities.containsKey(coordinates);
+    }
+
 
     public boolean isSquareEmpty(Coordinates coordinates) {
+
+        if (coordinates.horizontal <= 0 || coordinates.horizontal > HORIZONTAL_MAX ||
+                coordinates.vertical <= 0 || coordinates.vertical > VERTICAL_MAX) {
+            return false;
+        }
 
         Entity entity = entities.get(coordinates);
         if (entity == null) {
             return true;
         }
-        if (entity.isStatic) {
+        if (entity.staticEntity.equals(Static.YES)) {
             return false;
         }
+
 
         return !entities.containsKey(coordinates);
     }
 
     public Entity getEntityCoordinate(Coordinates coordinates) {
         return entities.get(coordinates);
-    }
-
-
-    public boolean isValidCoordinate(Coordinates coordinates) {
-        if (coordinates.horizontal < 0 || coordinates.horizontal >= HORIZONTAL_MAX ||
-                coordinates.vertical < 0 || coordinates.vertical >= VERTICAL_MAX) {
-            return false;
-        }
-        return !isObstacle(coordinates);
-    }
-
-    public boolean isObstacle(Coordinates coordinates) {
-
-        Entity entity = getEntityCoordinate(coordinates);
-        if (entity == null) {
-            return false; // Если объект отсутствует, считаем, что препятствия нет
-        }
-        return !entity.isStatic;
     }
 
     public void removePiece(Coordinates coordinates) {

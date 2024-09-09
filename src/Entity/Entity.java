@@ -4,16 +4,18 @@ import MapSetting.*;
 abstract public class Entity {
 
     public Coordinates coordinates;
-    public final Types type;
-    public boolean isStatic;
+    public final FamilyType type;
+    public final Target target;
+    public final Static staticEntity;
 
-    public Entity(Coordinates coordinates, Types type, boolean isStatic) {
+    public Entity(Coordinates coordinates, FamilyType type, Target target, Static staticEntity) {
         this.coordinates = coordinates;
         this.type = type;
-        this.isStatic = isStatic;
+        this.target = target;
+        this.staticEntity = staticEntity;
     }
 
-    public Types getType() {
+    public FamilyType getType() {
         return type;
     }
 

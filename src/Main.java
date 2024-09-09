@@ -1,14 +1,9 @@
 import Entity.*;
 //import EntityMotion.aStar;
+import EntityMotion.aStar;
 import MapConsoleRenderer.MapConsoleRenderer;
 import MapSetting.Coordinates;
 import MapSetting.GameMap;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-
-import static Entity.Types.Herbivore;
 
 public class Main {
     public static void main(String[] args) {
@@ -17,9 +12,9 @@ public class Main {
 //        gameMap.setupDefaultEntityPositions();
 
         Herbivore herbivore = new Herbivore(new Coordinates(8, 20), 1, 2);
-        Herbivore herbivore1 = new Herbivore(new Coordinates(1, 1), 1, 2);
+        Herbivore herbivore1 = new Herbivore(new Coordinates(9, 5), 1, 2);
         Herbivore herbivore3 = new Herbivore(new Coordinates(1, 9), 1, 2);
-        Predator predator = new Predator(new Coordinates(8, 10), 1, 2, 3);
+        Predator predator = new Predator(new Coordinates(9, 11), 1, 2, 3);
         Grass grass = new Grass(new Coordinates(5, 5));
         Rock rock = new Rock(new Coordinates(9, 9));
         Rock rock2 = new Rock(new Coordinates(8, 9));
@@ -41,32 +36,22 @@ public class Main {
         MapConsoleRenderer renderer1 = new MapConsoleRenderer();
         renderer1.renderer(gameMap);
         System.out.println();
+//
+//        predator.makeMove(
+//                // отправляем свои координаты и карту ->
+//                // смотрим доступные ходы ->
+//                // отсеиваем ходы с большим весом ->
+//                // двигаемся к ближайшей цели на карте
+//
+//                gameMap);
 
-        predator.makeMove(
-                // отправляем свои координаты и карту ->
-                // смотрим доступные ходы ->
-                // отсеиваем ходы с большим весом ->
-                // двигаемся к ближайшей цели на карте
+        aStar star = new aStar();
 
-                gameMap);
-
-        List<Creature> allCreatures = gameMap.getAllCreatures();
-        System.out.println("Creatures:" + allCreatures);
-
-        renderer1.renderer(gameMap);
-        predator.makeMove(gameMap);
-        renderer1.renderer(gameMap);
-
-
-
-
-        ArrayList<Coordinates> setList = predator.getAvailableMoves(gameMap);
-        for (Coordinates coordinates : setList) {
-            System.out.println("rthis coord: " + coordinates.vertical + " " + coordinates.horizontal);
+        for (int i = 0; i < 50; i++){
+            predator.makeMove(gameMap);
+            renderer1.renderer(gameMap);
+            System.out.println();
         }
-
-        gameMap.getAllCreatures();
-
 
         int a = 123;
 

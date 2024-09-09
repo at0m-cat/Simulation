@@ -1,13 +1,13 @@
 package Entity;
 import MapSetting.*;
 
-import java.util.TreeMap;
-
 public class Grass extends Entity{
+
+    public final boolean RESOURCES = true;
 
     // ресурс для травоядных
 
     public Grass(Coordinates coordinates) {
-        super(coordinates, Types.Grass, true);
+        super(coordinates, FamilyType.Grass, Target.YES, Static.YES);
     }
 }

@@ -10,14 +10,14 @@ abstract public class Creature extends Entity {
     protected double speed; // клетки в секунду
     protected double hp; // здоровье
 
-    public Creature(Coordinates coordinates, Types type, double speed, double hp) {
-        super(coordinates, type, false);
+    public Creature(Coordinates coordinates, FamilyType type, Target target, double speed, double hp) {
+        super(coordinates, type, target, Static.NO );
         this.speed = speed;
         this.hp = hp;
     }
 
     private boolean isSquareAvailableForMove(Coordinates coordinates, GameMap map) {
-        return map.isSquareEmpty(coordinates);
+        return map.isSquareEmptyForMove(coordinates);
     }
 
     protected Set<CoordinatesShift> getCreatureMoves() {
