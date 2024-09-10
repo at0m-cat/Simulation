@@ -36,21 +36,16 @@ public class Main {
         MapConsoleRenderer renderer1 = new MapConsoleRenderer();
         renderer1.renderer(gameMap);
         System.out.println();
-//
-//        predator.makeMove(
-//                // отправляем свои координаты и карту ->
-//                // смотрим доступные ходы ->
-//                // отсеиваем ходы с большим весом ->
-//                // двигаемся к ближайшей цели на карте
-//
-//                gameMap);
+
 
         aStar star = new aStar();
+        System.out.println(gameMap.getAllCreatures());
 
         for (int i = 0; i < 50; i++){
             predator.makeMove(gameMap);
             renderer1.renderer(gameMap);
             System.out.println();
+            System.out.println(gameMap.getAllCreatures());
         }
 
         int a = 123;

@@ -93,9 +93,21 @@ public class GameMap {
 //        }
     }
 
+    public boolean isValidCoordinates(Coordinates coordinates) {
+        if (coordinates.horizontal <= 0 || coordinates.horizontal > HORIZONTAL_MAX ||
+                coordinates.vertical <= 0 || coordinates.vertical > VERTICAL_MAX) {
+            return false;
+        }
+        return true;
+    }
+
     public boolean isSquareEmptyForMove(Coordinates coordinates) {
 
         // используется в aStar для проверки валидности ячейки
+
+        if (!isValidCoordinates(coordinates)){
+            return false;
+        }
 
         Entity e = entities.get(coordinates);
         if (e == null) {
@@ -108,10 +120,11 @@ public class GameMap {
     }
 
 
-    public boolean isSquareEmpty(Coordinates coordinates) {
+    public boolean isSquareEmptyForPrintMap(Coordinates coordinates) {
 
-        if (coordinates.horizontal <= 0 || coordinates.horizontal > HORIZONTAL_MAX ||
-                coordinates.vertical <= 0 || coordinates.vertical > VERTICAL_MAX) {
+        // для печати карты
+
+        if (!isValidCoordinates(coordinates)){
             return false;
         }
 

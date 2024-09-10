@@ -13,7 +13,7 @@ public class MapConsoleRenderer {
             for (int vertical = gameMap.VERTICAL_MAX; vertical >= 1; vertical--) {
                 Coordinates coordinates = new Coordinates(horizontal, vertical);
 
-                if (gameMap.isSquareEmpty(coordinates)) {
+                if (gameMap.isSquareEmptyForPrintMap(coordinates)) {
                     line = "%s%s".formatted(line, getSprite(null));
                 } else {
                     Entity entity = gameMap.getEntityCoordinate(coordinates);
