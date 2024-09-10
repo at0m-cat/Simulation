@@ -15,18 +15,15 @@ public class Predator extends Creature {
         this.attackPower = attackPower;
     }
 
-    public int getPredatorSpeed() {
-        return speed;
-    }
-
     @Override
     public ArrayList<Coordinates> getAvailableMoves(GameMap map) {
         return super.getAvailableMoves(map);
     }
 
-
     @Override
     public void makeMove(GameMap map) {
+
+        // привязать значение скорости к передвижению
 
 
 
@@ -48,15 +45,14 @@ public class Predator extends Creature {
         }
 
         Coordinates nextStep = path.get(1);
-        map.moveCreature(coordinates, nextStep);
 
 
-//        if (getAvailableMoves(map).contains(nextStep)) {
-//            System.out.println("Перемещение к " + nextStep);
-//            map.moveCreature(coordinates, nextStep);
-//        } else {
-//            System.out.println("Следующий шаг заблокирован");
-//        }
+        if (getAvailableMoves(map).contains(nextStep)) {
+            System.out.println("Перемещение к " + nextStep);
+            map.moveCreature(coordinates, nextStep);
+        } else {
+            System.out.println("Следующий шаг заблокирован");
+        }
     }
 
 

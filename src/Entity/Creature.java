@@ -42,7 +42,9 @@ abstract public class Creature extends Entity {
 
 
         ArrayList<Coordinates> moves = new ArrayList<>();
+
         for (CoordinatesShift shift : getCreatureMoves()) {
+
             if (coordinates.canShift(shift)) {
                 Coordinates newCoordinates = coordinates.shift(shift);
 
@@ -74,7 +76,5 @@ abstract public class Creature extends Entity {
     }
 
     protected abstract void makeMove(GameMap map);
-
-//    protected abstract void makeMove(GameMap map);
 
 }
