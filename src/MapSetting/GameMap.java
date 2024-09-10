@@ -144,6 +144,17 @@ public class GameMap {
         return entities.get(coordinates);
     }
 
+    public Creature getCreatureCoordinate(Coordinates coordinates) {
+        Entity entity = entities.get(coordinates);
+        if (entity == null) {
+            return null;
+        }
+        if (entity instanceof Creature) {
+            return (Creature) entity;
+        }
+        return null;
+    }
+
     public void removePiece(Coordinates coordinates) {
         entities.remove(coordinates);
     }

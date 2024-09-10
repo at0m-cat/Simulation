@@ -14,7 +14,7 @@ public class Main {
         Herbivore herbivore = new Herbivore(new Coordinates(8, 20), 1, 2);
         Herbivore herbivore1 = new Herbivore(new Coordinates(9, 5), 1, 2);
         Herbivore herbivore3 = new Herbivore(new Coordinates(1, 9), 1, 2);
-        Predator predator = new Predator(new Coordinates(9, 11), 1, 2, 3);
+        Predator predator = new Predator(new Coordinates(9, 11), 2, 2, 3);
         Grass grass = new Grass(new Coordinates(5, 5));
         Rock rock = new Rock(new Coordinates(9, 9));
         Rock rock2 = new Rock(new Coordinates(8, 9));
@@ -40,6 +40,8 @@ public class Main {
 
         aStar star = new aStar();
         System.out.println(gameMap.getAllCreatures());
+
+        int b =11;
 
         for (int i = 0; i < 50; i++){
             predator.makeMove(gameMap);

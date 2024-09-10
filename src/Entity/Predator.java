@@ -5,15 +5,18 @@ import MapSetting.*;
 
 import java.util.*;
 
-import static java.lang.System.*;
-
 public class Predator extends Creature {
 
     private double attackPower;
 
-    public Predator(Coordinates coordinates, double speed, double hp, double attackPower) {
-        super(coordinates, FamilyType.Predator,Target.NO, speed, hp);
+
+    public Predator(Coordinates coordinates, int speed, double hp, double attackPower) {
+        super(coordinates, FamilyType.Predator, Target.NO, speed, hp);
         this.attackPower = attackPower;
+    }
+
+    public int getPredatorSpeed() {
+        return speed;
     }
 
     @Override
@@ -21,8 +24,12 @@ public class Predator extends Creature {
         return super.getAvailableMoves(map);
     }
 
+
     @Override
     public void makeMove(GameMap map) {
+
+
+
         ArrayList<Herbivore> herbivores = map.getAllHerbivore();
         if (herbivores.isEmpty()) {
             System.out.println("Нет доступных травоядных для перемещения.");
@@ -41,13 +48,15 @@ public class Predator extends Creature {
         }
 
         Coordinates nextStep = path.get(1);
+        map.moveCreature(coordinates, nextStep);
 
-        if (getAvailableMoves(map).contains(nextStep)) {
-            System.out.println("Перемещение к " + nextStep);
-            map.moveCreature(coordinates, nextStep);
-        } else {
-            System.out.println("Следующий шаг заблокирован");
-        }
+
+//        if (getAvailableMoves(map).contains(nextStep)) {
+//            System.out.println("Перемещение к " + nextStep);
+//            map.moveCreature(coordinates, nextStep);
+//        } else {
+//            System.out.println("Следующий шаг заблокирован");
+//        }
     }
 
 

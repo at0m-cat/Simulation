@@ -1,16 +1,17 @@
 package Entity;
 
 //import EntityMotion.aStar;
+import EntityMotion.aStar;
 import MapSetting.*;
 
 import java.util.*;
 
 abstract public class Creature extends Entity {
 
-    protected double speed; // клетки в секунду
+    protected int speed; // клетки в секунду
     protected double hp; // здоровье
 
-    public Creature(Coordinates coordinates, FamilyType type, Target target, double speed, double hp) {
+    public Creature(Coordinates coordinates, FamilyType type, Target target, int speed, double hp) {
         super(coordinates, type, target, Static.NO );
         this.speed = speed;
         this.hp = hp;
@@ -37,6 +38,9 @@ abstract public class Creature extends Entity {
 
         // проверяет возможность хода
 
+        // todo: Пересмотреть сдвиги координат
+
+
         ArrayList<Coordinates> moves = new ArrayList<>();
         for (CoordinatesShift shift : getCreatureMoves()) {
             if (coordinates.canShift(shift)) {
@@ -57,7 +61,7 @@ abstract public class Creature extends Entity {
         return speed;
     }
 
-    public void setSpeed(double speed) {
+    public void setSpeed(int speed) {
         this.speed = speed;
     }
 
@@ -70,5 +74,7 @@ abstract public class Creature extends Entity {
     }
 
     protected abstract void makeMove(GameMap map);
+
+//    protected abstract void makeMove(GameMap map);
 
 }
