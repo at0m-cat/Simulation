@@ -24,7 +24,11 @@ public class Predator extends Creature {
     public void makeMove(GameMap map) {
 
         // привязать значение скорости к передвижению
+        int step = 0;
 
+        if (speed != 0){
+            step = speed - 1;
+        }
 
 
         ArrayList<Herbivore> herbivores = map.getAllHerbivore();
@@ -39,24 +43,29 @@ public class Predator extends Creature {
         // ! написать сортировку по целям
         ArrayList<Coordinates> path = star.shortestPath(coordinates, herbivores.get(0).coordinates, map);
 
-        if (path.isEmpty() || path.size() == 1) {
+        if (path.isEmpty()) {
             System.out.println("Нет доступного пути до цели");
             return;
         }
 
-//        Coordinates nextStep = path.get(0);
 
+        Coordinates next = path.getFirst();
 
-        for (Coordinates c : path) {
-            if (getAvailableMoves(map).contains(c))
-            {
-                System.out.println("Перемещение к " + c);
-                map.moveCreature(coordinates, c);
-            } else {
-                System.out.println("Следующий шаг заблокирован");
-            }
+        if (path.size() <= step) {
+            System.out.println("Движение с ускорением невозможно");
+            map.moveCreature(coordinates, next);
+            return;
         }
+        Coordinates nextSpeed = path.get(step);
 
+        if (getAvailableMoves(map).contains(nextSpeed)) {
+            System.out.println("Перемещение к " + nextSpeed);
+            map.moveCreature(coordinates, nextSpeed);
+        } else {
+
+            System.out.println("Следующий шаг заблокирован");
+            map.moveCreature(coordinates, next);
+        }
 
     }
 

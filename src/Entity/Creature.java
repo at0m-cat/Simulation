@@ -22,9 +22,20 @@ abstract public class Creature extends Entity {
     }
 
 
-    protected Set<CoordinatesShift> getCreatureMoves() {
+    protected Set<CoordinatesShift> getCreatureMoves(int speed) {
 
         Set<CoordinatesShift> moves = new HashSet<>();
+        int[][] deltas = {{0,1}, {0,-1}, {1,0}, {-1,0}};
+        for (int[] delta : deltas) {
+            for (int i = 1; i <= speed; i++){
+                moves.add(new CoordinatesShift(delta[0]*i, delta[1]*i));
+            }
+        }
+
+
+//            new CoordinatesShift()
+
+
 
 //        for (int i = 0)
 
@@ -51,7 +62,7 @@ abstract public class Creature extends Entity {
 
         ArrayList<Coordinates> moves = new ArrayList<>();
 
-        for (CoordinatesShift shift : getCreatureMoves()) {
+        for (CoordinatesShift shift : getCreatureMoves(speed)) {
 
             if (coordinates.canShift(shift)) {
                 Coordinates newCoordinates = coordinates.shift(shift);
