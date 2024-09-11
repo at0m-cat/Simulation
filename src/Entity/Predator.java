@@ -44,15 +44,20 @@ public class Predator extends Creature {
             return;
         }
 
-        Coordinates nextStep = path.get(1);
+//        Coordinates nextStep = path.get(0);
 
 
-        if (getAvailableMoves(map).contains(nextStep)) {
-            System.out.println("Перемещение к " + nextStep);
-            map.moveCreature(coordinates, nextStep);
-        } else {
-            System.out.println("Следующий шаг заблокирован");
+        for (Coordinates c : path) {
+            if (getAvailableMoves(map).contains(c))
+            {
+                System.out.println("Перемещение к " + c);
+                map.moveCreature(coordinates, c);
+            } else {
+                System.out.println("Следующий шаг заблокирован");
+            }
         }
+
+
     }
 
 

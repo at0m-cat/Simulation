@@ -1,4 +1,5 @@
 package EntityMotion;
+import Entity.Creature;
 import MapSetting.Coordinates;
 import MapSetting.GameMap;
 import java.util.*;
@@ -21,6 +22,9 @@ public class aStar {
 
     public List<Coordinates> getNeighbours(Coordinates coordinates, GameMap map) {
         List<Coordinates> neighbours = new ArrayList<>();
+
+
+
         int[][] deltas = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}}; // Вверх, вниз, влево, вправо
 
         for (int[] delta : deltas) {

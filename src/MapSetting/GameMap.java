@@ -155,7 +155,7 @@ public class GameMap {
         return null;
     }
 
-    public void removePiece(Coordinates coordinates) {
+    public void removeEntity(Coordinates coordinates) {
         entities.remove(coordinates);
     }
 
@@ -165,7 +165,7 @@ public class GameMap {
             return;
         }
 
-        removePiece(from);
+        removeEntity(from);
         setEntities(to, entity);
     }
 }

@@ -21,17 +21,25 @@ abstract public class Creature extends Entity {
         return map.isSquareEmptyForMove(coordinates);
     }
 
+
     protected Set<CoordinatesShift> getCreatureMoves() {
 
-        // возможные ходы
-        // добавить параметр скорости, написать функцию
+        Set<CoordinatesShift> moves = new HashSet<>();
 
-        return new HashSet<>(Arrays.asList(
-                new CoordinatesShift(1, 0),
-                new CoordinatesShift(-1, 0),
-                new CoordinatesShift(0, 1),
-                new CoordinatesShift(0, -1)
-        ));
+//        for (int i = 0)
+
+        // написать цикл по установке шагов, включить параметр скорости = shift * speed
+
+
+
+
+//        return new HashSet<>(Arrays.asList(
+//                new CoordinatesShift(1, 0),
+//                new CoordinatesShift(-1, 0),
+//                new CoordinatesShift(0, 1),
+//                new CoordinatesShift(0, -1)
+//        ));
+        return moves;
     }
 
     public ArrayList<Coordinates> getAvailableMoves(GameMap map) {
