@@ -50,6 +50,8 @@ public class Predator extends Creature {
             return;
         }
 
+//        todo: сделать регулировку скорости: если 3кл\сек недоступно - сделать 2кл\сек, и тд
+
 
         Coordinates next = path.getFirst();
 

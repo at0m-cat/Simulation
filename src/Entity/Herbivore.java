@@ -24,12 +24,4 @@ public class Herbivore extends Creature implements Comparable<Herbivore> {
         // написать логику
 
     }
-
-    public void setHp(double hp) {
-        this.hp = hp;
-    }
-
-    public double getHp() {
-        return hp;
-    }
 }
