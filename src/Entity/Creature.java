@@ -1,6 +1,7 @@
 package Entity;
 
 //import EntityMotion.aStar;
+
 import EntityMotion.aStar;
 import MapSetting.*;
 
@@ -12,7 +13,7 @@ abstract public class Creature extends Entity {
     protected double hp; // здоровье
 
     public Creature(Coordinates coordinates, FamilyType type, Target target, int speed, double hp) {
-        super(coordinates, type, target, Static.NO );
+        super(coordinates, type, target, Static.NO);
         this.speed = speed;
         this.hp = hp;
     }
@@ -25,31 +26,13 @@ abstract public class Creature extends Entity {
     protected Set<CoordinatesShift> getCreatureMoves(int speed) {
 
         Set<CoordinatesShift> moves = new HashSet<>();
-        int[][] deltas = {{0,1}, {0,-1}, {1,0}, {-1,0}};
+        int[][] deltas = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
         for (int[] delta : deltas) {
-            for (int i = 1; i <= speed; i++){
-                moves.add(new CoordinatesShift(delta[0]*i, delta[1]*i));
+            for (int i = 1; i <= speed; i++) {
+                moves.add(new CoordinatesShift(delta[0] * i, delta[1] * i));
             }
         }
 
-
-//            new CoordinatesShift()
-
-
-
-//        for (int i = 0)
-
-        // написать цикл по установке шагов, включить параметр скорости = shift * speed
-
-
-
-
-//        return new HashSet<>(Arrays.asList(
-//                new CoordinatesShift(1, 0),
-//                new CoordinatesShift(-1, 0),
-//                new CoordinatesShift(0, 1),
-//                new CoordinatesShift(0, -1)
-//        ));
         return moves;
     }
 
@@ -75,7 +58,6 @@ abstract public class Creature extends Entity {
 
         return moves;
     }
-
 
 
     public double getSpeed() {
