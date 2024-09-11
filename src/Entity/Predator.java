@@ -30,6 +30,8 @@ public class Predator extends Creature {
             step = speed - 1;
         }
 
+//         todo: Разбить этот метод на простые !!!
+
 
         ArrayList<Herbivore> herbivores = map.getAllHerbivore();
         if (herbivores.isEmpty()) {
