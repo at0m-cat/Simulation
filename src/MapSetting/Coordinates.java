@@ -33,6 +33,11 @@ public class Coordinates {
         return null;
     }
 
+    public int distanceTo(Entity entity) {
+        Coordinates target = entity.getCoordinates();
+        return Math.abs(this.horizontal - target.horizontal) + Math.abs(this.vertical - target.vertical);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

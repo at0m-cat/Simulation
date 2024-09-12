@@ -23,23 +23,22 @@ public class Predator extends Creature {
     @Override
     public void makeMove(GameMap map) {
 
-        // привязать значение скорости к передвижению
+        if (!isMove(map)){
+            System.out.println("Нельзя");
+            return;
+        }
+
         int step = 0;
 
         if (speed != 0){
             step = speed - 1;
         }
-
 //         todo: Разбить этот метод на простые !!!
 
 
         ArrayList<Herbivore> herbivores = map.getAllHerbivore();
-        if (herbivores.isEmpty()) {
-            System.out.println("Нет доступных травоядных для перемещения.");
-            return;
-        }
-
         Collections.sort(herbivores); // Сортируем по расстоянию до хищника
+        herbivores.sort(Comparator.comparingInt(h -> coordinates.distanceTo(h)));
         aStar star = new aStar();
 
         // ! написать сортировку по целям
@@ -49,12 +48,6 @@ public class Predator extends Creature {
             System.out.println("Нет доступного пути до цели");
             return;
         }
-
-//        todo: сделать регулировку скорости: если 3кл\сек недоступно - сделать 2кл\сек, и тд
-
-
-//        Coordinates next = path.getFirst();
-
 
         if (path.size() > step) {
             map.moveCreature(coordinates, path.get(step));

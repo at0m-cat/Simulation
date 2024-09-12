@@ -37,12 +37,6 @@ abstract public class Creature extends Entity {
     }
 
     public ArrayList<Coordinates> getAvailableMoves(GameMap map) {
-
-        // проверяет возможность хода
-
-        // todo: Пересмотреть сдвиги координат
-
-
         ArrayList<Coordinates> moves = new ArrayList<>();
 
         for (CoordinatesShift shift : getCreatureMoves(speed)) {
@@ -74,6 +68,29 @@ abstract public class Creature extends Entity {
 
     public void setHp(double hp) {
         this.hp = hp;
+    }
+
+    protected boolean isMove(GameMap map) {
+
+        switch (getClass().getSimpleName()) {
+            case "Predator" -> {
+                ArrayList<Herbivore> herbivores = map.getAllHerbivore();
+                if (herbivores.isEmpty()) {
+                    return false;
+                }
+            }
+
+            case "Herbivore" -> {
+                ArrayList<Grass> grasses = map.getAllGrass();
+                if (grasses.isEmpty()) {
+                    return false;
+                }
+            }
+            default -> {
+                return false;
+            }
+        }
+        return true;
     }
 
     protected abstract void makeMove(GameMap map);
