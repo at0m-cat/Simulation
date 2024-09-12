@@ -49,6 +49,8 @@ public class Main {
             System.out.println(gameMap.getAllCreatures());
         }
 
+
+
 //        for (int i = 0; i < 50; i++){
 //            predator.makeMove(gameMap);
 //            renderer1.renderer(gameMap);

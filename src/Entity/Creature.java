@@ -70,29 +70,86 @@ abstract public class Creature extends Entity {
         this.hp = hp;
     }
 
-    protected boolean isMove(GameMap map) {
 
-        switch (getClass().getSimpleName()) {
-            case "Predator" -> {
-                ArrayList<Herbivore> herbivores = map.getAllHerbivore();
-                if (herbivores.isEmpty()) {
-                    return false;
-                }
-            }
 
-            case "Herbivore" -> {
-                ArrayList<Grass> grasses = map.getAllGrass();
-                if (grasses.isEmpty()) {
-                    return false;
-                }
-            }
-            default -> {
-                return false;
-            }
+    protected ArrayList<Coordinates> getPathToTarget(GameMap map) {
+        aStar star = new aStar();
+        ArrayList<Coordinates> path = new ArrayList<>();
+
+        if (this instanceof Predator){
+            ArrayList<Herbivore> targets = getCreatureTargets(map);
+            path = star.shortestPath(coordinates, targets.getFirst().coordinates, map);
         }
-        return true;
+        else if (this instanceof Herbivore){
+            ArrayList<Herbivore> targets = getCreatureTargets(map);
+            path = star.shortestPath(coordinates, targets.getFirst().coordinates, map);
+        }
+
+        return path;
     }
 
-    protected abstract void makeMove(GameMap map);
+    protected int getStepMove(){
+        int step = 1;
+
+        if (speed > step){
+            step = speed - 1;
+            return step;
+        }
+        return step;
+    }
+
+    protected <T extends Entity> ArrayList<T> getCreatureTargets(GameMap map) {
+        ArrayList<T> targets = new ArrayList<>();
+
+        if (this instanceof Predator) {
+            targets = (ArrayList<T>) map.getAllHerbivore();
+
+        } else if (this instanceof Herbivore) {
+            targets = (ArrayList<T>) map.getAllGrass();
+        }
+        targets.sort(Comparator.comparingDouble(t -> coordinates.distanceTo(t)));
+
+        return targets;
+    }
+
+    protected boolean isPath(GameMap map){
+        return !getPathToTarget(map).isEmpty();
+    }
+
+    protected boolean isMove(GameMap map) {
+
+        if (this instanceof Predator) {
+            return !map.getAllHerbivore().isEmpty();
+
+        } else if (this instanceof Herbivore) {
+            return !map.getAllGrass().isEmpty();
+        }
+
+        return false;
+    }
+
+    protected void makeMove(GameMap map){
+
+        if (!isMove(map)){
+            return;
+        }
+
+        if (!isPath(map)){
+            return;
+        }
+
+        int step = getStepMove();
+        ArrayList<Coordinates> path = getPathToTarget(map);
+
+        if (path.size() > step) {
+            map.moveCreature(coordinates, path.get(step));
+            System.out.println("УСКОРЕНИЕ");
+        }
+        else {
+            map.moveCreature(coordinates, path.getLast());
+            System.out.println("БЕЗ УСКОРЕНИЯ");
+        }
+
+    }
 
 }

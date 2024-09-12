@@ -15,58 +15,16 @@ public class Predator extends Creature {
         this.attackPower = attackPower;
     }
 
-    @Override
-    public ArrayList<Coordinates> getAvailableMoves(GameMap map) {
-        return super.getAvailableMoves(map);
-    }
-
-    @Override
-    public void makeMove(GameMap map) {
-
-        if (!isMove(map)){
-            System.out.println("Нельзя");
-            return;
-        }
-
-        int step = 0;
-
-        if (speed != 0){
-            step = speed - 1;
-        }
-//         todo: Разбить этот метод на простые !!!
-
-
-        ArrayList<Herbivore> herbivores = map.getAllHerbivore();
-        Collections.sort(herbivores); // Сортируем по расстоянию до хищника
-        herbivores.sort(Comparator.comparingInt(h -> coordinates.distanceTo(h)));
-        aStar star = new aStar();
-
-        // ! написать сортировку по целям
-        ArrayList<Coordinates> path = star.shortestPath(coordinates, herbivores.get(0).coordinates, map);
-
-        if (path.isEmpty()) {
-            System.out.println("Нет доступного пути до цели");
-            return;
-        }
-
-        if (path.size() > step) {
-            map.moveCreature(coordinates, path.get(step));
-            System.out.println("УСКОРЕНИЕ");
-        }
-        else {
-            map.moveCreature(coordinates, path.getLast());
-            System.out.println("БЕЗ УСКОРЕНИЯ");
-        }
-
-
-    }
-
-
     public void setAttackPower(double attackPowerPercent) {
         this.attackPower = attackPowerPercent;
     }
 
     public double getAttackPower() {
         return attackPower;
+    }
+
+    @Override
+    public void makeMove(GameMap map) {
+        super.makeMove(map);
     }
 }

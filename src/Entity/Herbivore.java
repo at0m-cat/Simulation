@@ -12,16 +12,16 @@ public class Herbivore extends Creature implements Comparable<Herbivore> {
 
 
     @Override
+    public void makeMove(GameMap map) {
+        super.makeMove(map);
+    }
+
+
+    @Override
     public int compareTo(Herbivore o) {
         return Math.abs((coordinates.horizontal - o.coordinates.horizontal)
                 + (coordinates.vertical - o.coordinates.vertical));
     }
 
 
-    @Override
-    public void makeMove(GameMap map) {
-
-        // написать логику
-
-    }
 }
