@@ -99,24 +99,32 @@ public class GameMap {
         return true;
     }
 
-    public boolean isSquareEmptyForMove(Coordinates coordinates) {
-
-        // используется в aStar для проверки валидности ячейки
-
-//        todo: придумать, чтобы хищники не ели траву, у которой тоже метка target
+    public boolean isSquareEmptyForMove(Coordinates coordinates, FamilyType type) {
 
         if (!isValidCoordinates(coordinates)) {
             return false;
         }
-
         Entity e = entities.get(coordinates);
         if (e == null) {
             return true;
         }
-
-        if (e.target.equals(Target.YES)) {
-            return true;
+        if (type == null){
+            return false;
         }
+
+        switch (type){
+            case Predator -> {
+                if (e.target.equals(Target.TargetForPredator)){
+                    return true;
+                }
+            }
+            case Herbivore -> {
+                if (e.target.equals(Target.TargetForHerbivore)){
+                    return true;
+                }
+            }
+        }
+
         return !entities.containsKey(coordinates);
     }
 

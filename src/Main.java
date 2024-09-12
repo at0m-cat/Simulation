@@ -44,7 +44,6 @@ public class Main {
         System.out.println();
 
 
-        aStar star = new aStar();
         System.out.println(gameMap.getAllCreatures());
 
         int b =11;

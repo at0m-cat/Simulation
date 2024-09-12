@@ -38,7 +38,12 @@ abstract public class Creature extends Entity {
     }
 
     private ArrayList<Coordinates> getPathToTarget(GameMap map) {
-        aStar star = new aStar();
+        if (map.getEntityCoordinate(coordinates) == null) {
+            return new ArrayList<>();
+        }
+
+        FamilyType type = map.getEntityCoordinate(coordinates).type;
+        aStar star = new aStar(type);
         ArrayList<Coordinates> path = new ArrayList<>();
 
         if (this instanceof Predator) {

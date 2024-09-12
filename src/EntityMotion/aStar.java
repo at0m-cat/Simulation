@@ -1,9 +1,16 @@
 package EntityMotion;
+import Entity.*;
 import MapSetting.Coordinates;
 import MapSetting.GameMap;
 import java.util.*;
 
 public class aStar {
+
+    FamilyType type;
+
+    public aStar(FamilyType type) {
+       this.type = type;
+    }
 
     public int heuristic(Coordinates from, Coordinates to) {
         return Math.abs(from.horizontal - to.horizontal) + Math.abs(from.vertical - to.vertical);
@@ -22,17 +29,17 @@ public class aStar {
 
     public List<Coordinates> getNeighbours(Coordinates coordinates, GameMap map) {
         List<Coordinates> neighbours = new ArrayList<>();
+        ShiftsCreature shiftsCreature = new ShiftsCreature();
 
-        int[][] shifts = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+        int[][] shifts = shiftsCreature.getShifts();
 
         for (int[] shift : shifts) {
             int newHorizontal = coordinates.horizontal + shift[0];
             int newVertical = coordinates.vertical + shift[1];
             Coordinates neighbor = new Coordinates(newHorizontal, newVertical);
 
-            if (map.isSquareEmptyForMove(neighbor) ) {
+            if (map.isSquareEmptyForMove(neighbor, type) ) {
                 neighbours.add(neighbor);
-
             }
         }
         return neighbours;
@@ -41,8 +48,9 @@ public class aStar {
     public ArrayList<Coordinates> shortestPath(Coordinates from, Coordinates to, GameMap map) {
 
         PriorityQueue<Node> openList = new PriorityQueue<>(Comparator.comparingDouble(Node::getF));
-        Map<Coordinates, Double> gScore = new HashMap<>(); // Минимальная стоимость пути до каждой координаты
+        Map<Coordinates, Double> gScore = new HashMap<>();
         Set<Coordinates> closedList = new HashSet<>();
+
 
         Node startNode = new Node(from, null, 0, heuristic(from, to));
         openList.add(startNode);
@@ -81,21 +89,5 @@ public class aStar {
         return new ArrayList<>();
     }
 
-    private static class Node {
-        Coordinates coordinates;
-        Node parent;
-        double g;
-        double f;
 
-        public Node(Coordinates coordinates, Node parent, double g, double f) {
-            this.coordinates = coordinates;
-            this.parent = parent;
-            this.g = g;
-            this.f = f;
-        }
-
-        public double getF() {
-            return f;
-        }
-    }
 }

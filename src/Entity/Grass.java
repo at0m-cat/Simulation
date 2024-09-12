@@ -5,7 +5,7 @@ public class Grass extends Entity implements Comparable<Grass>{
 
 
     public Grass(Coordinates coordinates) {
-        super(coordinates, FamilyType.Grass, Target.YES, Static.YES);
+        super(coordinates, FamilyType.Grass, Target.TargetForHerbivore, Static.YES);
     }
 
     public int compareTo(Grass o) {
