@@ -1,5 +1,5 @@
-import MapConsoleRenderer.MapConsoleRenderer;
-import MapSetting.GameMap;
+import GameMap.MapConsoleRenderer.MapConsoleRenderer;
+import GameMap.MapSetting.GameMap;
 
 public class Game {
     private final GameMap gameMap;

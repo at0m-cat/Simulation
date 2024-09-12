@@ -1,5 +1,8 @@
 package Entity;
-import MapSetting.*;
+import Entity.EnumType.FamilyType;
+import Entity.EnumType.StaticType;
+import Entity.EnumType.TargetType;
+import GameMap.MapSetting.Coordinates;
 
 abstract public class Entity {
 

@@ -1,6 +1,6 @@
 package Actions;
 
-import MapSetting.GameMap;
+import GameMap.MapSetting.GameMap;
 
 public interface Actions {
      void execute(GameMap gameMap);

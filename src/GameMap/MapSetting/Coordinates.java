@@ -1,4 +1,4 @@
-package MapSetting;
+package GameMap.MapSetting;
 
 import Entity.Entity;
 import java.util.*;

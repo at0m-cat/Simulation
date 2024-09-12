@@ -1,7 +1,7 @@
-package EntityMotion;
-import Entity.*;
-import MapSetting.Coordinates;
-import MapSetting.GameMap;
+package GameMap.EntityMotion;
+import Entity.EnumType.FamilyType;
+import GameMap.MapSetting.Coordinates;
+import GameMap.MapSetting.GameMap;
 import java.util.*;
 
 public class aStar {

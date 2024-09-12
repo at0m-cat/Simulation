@@ -1,6 +1,10 @@
-package Entity;
+package Entity.Name;
 
-import MapSetting.*;
+import Entity.Creature;
+import Entity.EnumType.FamilyType;
+import Entity.EnumType.TargetType;
+import GameMap.MapSetting.Coordinates;
+import GameMap.MapSetting.GameMap;
 
 public class Predator extends Creature {
 

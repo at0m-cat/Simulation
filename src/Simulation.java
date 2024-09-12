@@ -1,8 +1,3 @@
-import Actions.Actions;
-import MapSetting.GameMap;
-
-import java.util.List;
-
 public class Simulation {
 
     // главный класс приложения

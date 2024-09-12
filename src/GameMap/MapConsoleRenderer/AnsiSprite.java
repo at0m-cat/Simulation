@@ -1,4 +1,4 @@
-package MapConsoleRenderer;
+package GameMap.MapConsoleRenderer;
 
 class AnsiSprite {
 

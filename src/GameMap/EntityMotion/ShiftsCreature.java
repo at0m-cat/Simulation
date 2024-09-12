@@ -1,4 +1,4 @@
-package EntityMotion;
+package GameMap.EntityMotion;
 
 class ShiftsCreature {
 

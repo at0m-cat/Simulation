@@ -1,7 +1,11 @@
-package MapSetting;
+package GameMap.MapSetting;
 
 import Entity.*;
-//import EntityMotion.*;
+import Entity.EnumType.FamilyType;
+import Entity.EnumType.StaticType;
+import Entity.EnumType.TargetType;
+import Entity.Name.*;
+//import GameMap.EntityMotion.*;
 
 import java.util.*;
 

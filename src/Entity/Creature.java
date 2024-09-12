@@ -1,7 +1,14 @@
 package Entity;
 
-import EntityMotion.aStar;
-import MapSetting.*;
+import Entity.EnumType.FamilyType;
+import Entity.EnumType.StaticType;
+import Entity.EnumType.TargetType;
+import Entity.Name.Grass;
+import Entity.Name.Herbivore;
+import Entity.Name.Predator;
+import GameMap.EntityMotion.aStar;
+import GameMap.MapSetting.Coordinates;
+import GameMap.MapSetting.GameMap;
 
 import java.util.*;
 

@@ -1,6 +1,6 @@
-package EntityMotion;
+package GameMap.EntityMotion;
 
-import MapSetting.Coordinates;
+import GameMap.MapSetting.Coordinates;
 
 class Node {
     Coordinates coordinates;

@@ -1,9 +1,11 @@
-package MapConsoleRenderer;
+package GameMap.MapConsoleRenderer;
 
 import Entity.*;
-import MapSetting.*;
+import GameMap.MapConsoleRenderer.*;
+import GameMap.MapSetting.Coordinates;
+import GameMap.MapSetting.GameMap;
 
-import static MapConsoleRenderer.AnsiSprite.*;
+import static GameMap.MapConsoleRenderer.AnsiSprite.*;
 
 public class MapConsoleRenderer {
 

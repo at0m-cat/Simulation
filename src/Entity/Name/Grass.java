@@ -1,5 +1,9 @@
-package Entity;
-import MapSetting.*;
+package Entity.Name;
+import Entity.Entity;
+import Entity.EnumType.FamilyType;
+import Entity.EnumType.StaticType;
+import Entity.EnumType.TargetType;
+import GameMap.MapSetting.Coordinates;
 
 public class Grass extends Entity implements Comparable<Grass>{
 

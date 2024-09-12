@@ -1,4 +1,4 @@
-package Entity;
+package Entity.EnumType;
 
 public enum TargetType {
     NO,
