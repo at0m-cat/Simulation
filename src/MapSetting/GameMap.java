@@ -8,7 +8,7 @@ import java.util.*;
 public class GameMap {
     HashMap<Coordinates, Entity> entities = new HashMap<>();
 
-    public static final int HORIZONTAL_MAX = 15;
+    public static final int HORIZONTAL_MAX = 20;
     public static final int VERTICAL_MAX = 20;
 
     public void setEntities(Entity entity) {
@@ -52,43 +52,29 @@ public class GameMap {
 
     public void setupDefaultEntityPositions() {
 
-//        setEntities(new Coordinates(1, 1),
-//                new Predator(
-//                        new Coordinates(1, 1),
-//                        2,
-//                        100,
-//                        77
-//                ));
-//
-//        setEntities(new Coordinates(10, 12), new Herbivore(
-//                new Coordinates(10, 12),
-//                1, 50)
-//        );
-//
-//        setEntities(new Coordinates(9, 12), new Rock(new Coordinates(9, 12)));
-//        setEntities(new Coordinates(9, 11), new Rock(new Coordinates(9, 11)));
-//        setEntities(new Coordinates(10, 11), new Rock(new Coordinates(10, 11)));
-//        setEntities(new Coordinates(9, 13), new Rock(new Coordinates(9, 13)));
-//
-//
-//        setEntities(new Coordinates(3, 2), new Rock(new Coordinates(3, 2)));
-//        setEntities(new Coordinates(4, 1), new Rock(new Coordinates(4, 1)));
-//        setEntities(new Coordinates(1, 3), new Rock(new Coordinates(1, 3)));
-//        setEntities(new Coordinates(10, 11), new Rock(new Coordinates(10, 11)));
-//        setEntities(new Coordinates(10, 13), new Rock(new Coordinates(10, 13)));
-//        setEntities(new Coordinates(11, 11), new Rock(new Coordinates(11, 11)));
+        setEntities(new Predator(
+                new Coordinates(new Random().nextInt(1, HORIZONTAL_MAX+1),
+                        new Random().nextInt(1, VERTICAL_MAX+1)), new Random().nextInt(3), 100,1));
+
+        setEntities(new Herbivore(
+                new Coordinates(new Random().nextInt(1,HORIZONTAL_MAX+1),
+                        new Random().nextInt(1,VERTICAL_MAX+1)), new Random().nextInt(3), 100));
+
+        setEntities(new Grass(
+                new Coordinates(new Random().nextInt(1,HORIZONTAL_MAX+1),
+                        new Random().nextInt(1,VERTICAL_MAX+1))));
+
+        setEntities(new Rock(new Coordinates(
+                new Random().nextInt(1,HORIZONTAL_MAX+1),
+                new Random().nextInt(1,VERTICAL_MAX+1)
+        )));
+
+        setEntities(new Three(new Coordinates(
+                new Random().nextInt(HORIZONTAL_MAX-1),
+                new Random().nextInt(VERTICAL_MAX-1)
+        )));
 
 
-//        for (int i = 0; i < 9; i++) {
-//            setEntities(new Coordinates(1, i), new Grass(new Coordinates(1, i)));
-//            setEntities(new Coordinates(8, i), new Three(new Coordinates(8, i)));
-//            setEntities(new Coordinates(7, i), new Three(new Coordinates(7, i)));
-//            setEntities(new Coordinates(3, i), new Rock(new Coordinates(3, i)));
-//            setEntities(new Coordinates(5, i), new Herbivore(new Coordinates(5, i),
-//                    3.3, 100));
-//            setEntities(new Coordinates(6, i), new Predator(new Coordinates(6, i),
-//                    3.3, 100, 44));
-//        }
     }
 
     public boolean isValidCoordinates(Coordinates coordinates) {
@@ -108,9 +94,7 @@ public class GameMap {
         if (e == null) {
             return true;
         }
-        if (type == null){
-            return false;
-        }
+
 
         switch (type){
             case Predator -> {

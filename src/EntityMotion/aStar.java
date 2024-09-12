@@ -23,7 +23,7 @@ public class aStar {
             node = node.parent;
         }
         Collections.reverse(path);
-        path.remove(path.getFirst());
+//        path.remove(path.getFirst());
         return path;
     }
 

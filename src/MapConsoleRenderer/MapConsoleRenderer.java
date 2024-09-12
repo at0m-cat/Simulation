@@ -8,9 +8,9 @@ import static MapConsoleRenderer.AnsiSprite.*;
 public class MapConsoleRenderer {
 
     public void renderer(GameMap gameMap) {
-        for (int horizontal = gameMap.HORIZONTAL_MAX; horizontal >= 1; horizontal--) {
+        for (int vertical = gameMap.VERTICAL_MAX; vertical >= 1; vertical--) {
             String line = "";
-            for (int vertical = gameMap.VERTICAL_MAX; vertical >= 1; vertical--) {
+            for (int horizontal = gameMap.HORIZONTAL_MAX; horizontal >= 1; horizontal--) {
                 Coordinates coordinates = new Coordinates(horizontal, vertical);
 
                 if (gameMap.isSquareEmptyForPrintMap(coordinates)) {

@@ -26,11 +26,10 @@ abstract public class Creature extends Entity {
             return;
         }
 
-        int step = getStepMove();
         ArrayList<Coordinates> path = getPathToTarget(map);
 
-        if (path.size() > step) {
-            map.moveCreature(coordinates, path.get(step));
+        if (path.size() > speed) {
+            map.moveCreature(coordinates, path.get(speed));
         } else {
             map.moveCreature(coordinates, path.getLast());
         }
@@ -69,16 +68,6 @@ abstract public class Creature extends Entity {
         targets.sort(Comparator.comparingDouble(t -> coordinates.distanceTo(t)));
 
         return targets;
-    }
-
-    private int getStepMove() {
-        int step = 1;
-
-        if (speed > step) {
-            step = speed - 1;
-            return step;
-        }
-        return step;
     }
 
     private boolean isPath(GameMap map) {
