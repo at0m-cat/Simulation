@@ -23,16 +23,13 @@ public class aStar {
     public List<Coordinates> getNeighbours(Coordinates coordinates, GameMap map) {
         List<Coordinates> neighbours = new ArrayList<>();
 
+        int[][] shifts = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
 
-
-        int[][] deltas = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}}; // Вверх, вниз, влево, вправо
-
-        for (int[] delta : deltas) {
-            int newHorizontal = coordinates.horizontal + delta[0];
-            int newVertical = coordinates.vertical + delta[1];
+        for (int[] shift : shifts) {
+            int newHorizontal = coordinates.horizontal + shift[0];
+            int newVertical = coordinates.vertical + shift[1];
             Coordinates neighbor = new Coordinates(newHorizontal, newVertical);
 
-            // Проверяем, что новая координата валидна и не является препятствием
             if (map.isSquareEmptyForMove(neighbor) ) {
                 neighbours.add(neighbor);
 
@@ -47,7 +44,6 @@ public class aStar {
         Map<Coordinates, Double> gScore = new HashMap<>(); // Минимальная стоимость пути до каждой координаты
         Set<Coordinates> closedList = new HashSet<>();
 
-        // Начальный узел
         Node startNode = new Node(from, null, 0, heuristic(from, to));
         openList.add(startNode);
         gScore.put(from, 0.0);
@@ -56,27 +52,23 @@ public class aStar {
             Node currentNode = openList.poll();
             Coordinates currentCoordinates = currentNode.coordinates;
 
-            // Если достигли цели, строим путь
             if (currentCoordinates.equals(to)) {
                 return constructPath(currentNode);
             }
 
             closedList.add(currentCoordinates);
 
-            // Получаем всех соседей
             for (Coordinates neighbor : getNeighbours(currentCoordinates, map)) {
                 if (closedList.contains(neighbor)) {
                     continue;
                 }
 
-                double tentativeG = currentNode.g + 1; // Стоимость до текущей клетки + 1
+                double tentativeG = currentNode.g + 1;
 
-                // Если нашли более короткий путь к соседу
                 if (!gScore.containsKey(neighbor) || tentativeG < gScore.get(neighbor)) {
                     gScore.put(neighbor, tentativeG);
                     Node neighborNode = new Node(neighbor, currentNode, tentativeG, tentativeG + heuristic(neighbor, to));
 
-                    // Обновляем или добавляем узел в openList
                     if (!openList.contains(neighborNode)) {
                         openList.add(neighborNode);
                     } else {
@@ -86,14 +78,14 @@ public class aStar {
                 }
             }
         }
-        return new ArrayList<>(); // Если путь не найден, возвращаем пустой список
+        return new ArrayList<>();
     }
 
     private static class Node {
         Coordinates coordinates;
         Node parent;
-        double g; // Стоимость пути от начальной точки
-        double f; // Общая стоимость пути (g + эвристика)
+        double g;
+        double f;
 
         public Node(Coordinates coordinates, Node parent, double g, double f) {
             this.coordinates = coordinates;

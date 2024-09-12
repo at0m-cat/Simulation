@@ -103,7 +103,9 @@ public class GameMap {
 
         // используется в aStar для проверки валидности ячейки
 
-        if (!isValidCoordinates(coordinates)){
+//        todo: придумать, чтобы хищники не ели траву, у которой тоже метка target
+
+        if (!isValidCoordinates(coordinates)) {
             return false;
         }
 
@@ -121,9 +123,7 @@ public class GameMap {
 
     public boolean isSquareEmptyForPrintMap(Coordinates coordinates) {
 
-        // для печати карты
-
-        if (!isValidCoordinates(coordinates)){
+        if (!isValidCoordinates(coordinates)) {
             return false;
         }
 

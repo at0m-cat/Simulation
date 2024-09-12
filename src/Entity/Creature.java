@@ -16,13 +16,13 @@ abstract public class Creature extends Entity {
         this.hp = hp;
     }
 
-    protected void makeMove(GameMap map){
+    protected void makeMove(GameMap map) {
 
-        if (!isMove(map)){
+        if (!isTargetAlive(map)) {
             return;
         }
 
-        if (!isPath(map)){
+        if (!isPath(map)) {
             return;
         }
 
@@ -31,22 +31,20 @@ abstract public class Creature extends Entity {
 
         if (path.size() > step) {
             map.moveCreature(coordinates, path.get(step));
-        }
-        else {
+        } else {
             map.moveCreature(coordinates, path.getLast());
         }
 
     }
 
-    protected ArrayList<Coordinates> getPathToTarget(GameMap map) {
+    private ArrayList<Coordinates> getPathToTarget(GameMap map) {
         aStar star = new aStar();
         ArrayList<Coordinates> path = new ArrayList<>();
 
-        if (this instanceof Predator){
+        if (this instanceof Predator) {
             ArrayList<Herbivore> targets = getCreatureTargets(map);
-            path = star.shortestPath(coordinates, targets.getFirst().coordinates, map );
-        }
-        else if (this instanceof Herbivore){
+            path = star.shortestPath(coordinates, targets.getFirst().coordinates, map);
+        } else if (this instanceof Herbivore) {
             ArrayList<Grass> targets = getCreatureTargets(map);
             path = star.shortestPath(coordinates, targets.getFirst().coordinates, map);
         }
@@ -54,7 +52,7 @@ abstract public class Creature extends Entity {
         return path;
     }
 
-    protected <T extends Entity> ArrayList<T> getCreatureTargets(GameMap map) {
+    private <T extends Entity> ArrayList<T> getCreatureTargets(GameMap map) {
         ArrayList<T> targets = new ArrayList<>();
 
         if (this instanceof Predator) {
@@ -68,26 +66,27 @@ abstract public class Creature extends Entity {
         return targets;
     }
 
-    protected int getStepMove(){
+    private int getStepMove() {
         int step = 1;
 
-        if (speed > step){
+        if (speed > step) {
             step = speed - 1;
             return step;
         }
         return step;
     }
 
-    protected boolean isPath(GameMap map){
+    private boolean isPath(GameMap map) {
         return !getPathToTarget(map).isEmpty();
     }
 
-    protected boolean isMove(GameMap map) {
+    private boolean isTargetAlive(GameMap map) {
 
         if (this instanceof Predator) {
             return !map.getAllHerbivore().isEmpty();
 
-        } if (this instanceof Herbivore) {
+        }
+        if (this instanceof Herbivore) {
             return !map.getAllGrass().isEmpty();
         }
 

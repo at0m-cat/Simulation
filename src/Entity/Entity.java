@@ -15,10 +15,6 @@ abstract public class Entity {
         this.staticEntity = staticEntity;
     }
 
-    public FamilyType getType() {
-        return type;
-    }
-
     public Coordinates getCoordinates() {
         return this.coordinates;
     }
