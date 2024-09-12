@@ -1,3 +1,5 @@
+package Actions;
+
 import MapSetting.GameMap;
 
 public interface Actions {

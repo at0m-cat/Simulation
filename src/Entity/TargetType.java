@@ -1,6 +1,6 @@
 package Entity;
 
-public enum Target {
+public enum TargetType {
     NO,
     TargetForPredator,
     TargetForHerbivore,

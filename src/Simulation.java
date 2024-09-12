@@ -1,20 +1,16 @@
+import Actions.Actions;
 import MapSetting.GameMap;
 
 import java.util.List;
 
 public class Simulation {
 
-    private GameMap gameMap;
-    private int moveCounter;
-    private List<Actions> initActions;
-    private List<Actions> turnActions;
-
     // главный класс приложения
     // включает в себя:
     //  - карту
     //  - счетчик ходов
     //  - рендерер поля
-    //  - Actions - список действий, исполняемых перед стартом симуляции или на каждом ходу
+    //  - Actions.Actions - список действий, исполняемых перед стартом симуляции или на каждом ходу
 
 
     // Методы:
@@ -22,7 +18,7 @@ public class Simulation {
     //  - startSumulation() - запустить бесконечный цикл симуляции и рендеринга
     //  - pauseSimulation() - приостановить бесконечный цикл симуляции и рендеринга
 
-    // Actions:
+    // Actions.Actions:
 //    Action -действие, совершаемое над миром.
 //    Например - сходить всеми существами.
 //    Это действие итерировало бы существ и вызывало каждому makeMove().

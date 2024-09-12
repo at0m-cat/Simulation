@@ -7,7 +7,7 @@ public class Herbivore extends Creature implements Comparable<Herbivore> {
 
 
     public Herbivore(Coordinates coordinates, int speed, double hp) {
-        super(coordinates, FamilyType.Herbivore, Target.TargetForPredator, speed, hp);
+        super(coordinates, FamilyType.Herbivore, TargetType.TargetForPredator, speed, hp);
     }
 
 

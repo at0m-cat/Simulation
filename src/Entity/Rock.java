@@ -4,6 +4,6 @@ import MapSetting.*;
 public class Rock extends Entity {
 
     public Rock(Coordinates coordinates) {
-        super(coordinates, FamilyType.Rock, Target.NO, Static.YES);
+        super(coordinates, FamilyType.Rock, TargetType.NO, StaticType.YES);
     }
 }

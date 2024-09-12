@@ -1,9 +1,6 @@
 package Entity;
 
-import EntityMotion.aStar;
 import MapSetting.*;
-
-import java.util.*;
 
 public class Predator extends Creature {
 
@@ -11,7 +8,7 @@ public class Predator extends Creature {
 
 
     public Predator(Coordinates coordinates, int speed, double hp, double attackPower) {
-        super(coordinates, FamilyType.Predator, Target.NO, speed, hp);
+        super(coordinates, FamilyType.Predator, TargetType.NO, speed, hp);
         this.attackPower = attackPower;
     }
 

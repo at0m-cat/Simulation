@@ -98,12 +98,12 @@ public class GameMap {
 
         switch (type){
             case Predator -> {
-                if (e.target.equals(Target.TargetForPredator)){
+                if (e.target.equals(TargetType.TargetForPredator)){
                     return true;
                 }
             }
             case Herbivore -> {
-                if (e.target.equals(Target.TargetForHerbivore)){
+                if (e.target.equals(TargetType.TargetForHerbivore)){
                     return true;
                 }
             }
@@ -123,7 +123,7 @@ public class GameMap {
         if (entity == null) {
             return true;
         }
-        if (entity.staticEntity.equals(Static.YES)) {
+        if (entity.staticEntity.equals(StaticType.YES)) {
             return false;
         }
 

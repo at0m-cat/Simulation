@@ -10,8 +10,8 @@ abstract public class Creature extends Entity {
     protected int speed; // клетки в секунду
     protected double hp; // здоровье
 
-    public Creature(Coordinates coordinates, FamilyType type, Target target, int speed, double hp) {
-        super(coordinates, type, target, Static.NO);
+    public Creature(Coordinates coordinates, FamilyType type, TargetType target, int speed, double hp) {
+        super(coordinates, type, target, StaticType.NO);
         this.speed = speed;
         this.hp = hp;
     }

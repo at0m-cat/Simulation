@@ -1,5 +1,5 @@
 package Entity;
 
-public enum Static {
+public enum StaticType {
     YES, NO;
 }
