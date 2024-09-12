@@ -53,23 +53,18 @@ public class Predator extends Creature {
 //        todo: сделать регулировку скорости: если 3кл\сек недоступно - сделать 2кл\сек, и тд
 
 
-        Coordinates next = path.getFirst();
+//        Coordinates next = path.getFirst();
 
-        if (path.size() <= step) {
-            System.out.println("Движение с ускорением невозможно");
-            map.moveCreature(coordinates, next);
-            return;
+
+        if (path.size() > step) {
+            map.moveCreature(coordinates, path.get(step));
+            System.out.println("УСКОРЕНИЕ");
         }
-        Coordinates nextSpeed = path.get(step);
-
-        if (getAvailableMoves(map).contains(nextSpeed)) {
-            System.out.println("Перемещение к " + nextSpeed);
-            map.moveCreature(coordinates, nextSpeed);
-        } else {
-
-            System.out.println("Следующий шаг заблокирован");
-            map.moveCreature(coordinates, next);
+        else {
+            map.moveCreature(coordinates, path.getLast());
+            System.out.println("БЕЗ УСКОРЕНИЯ");
         }
+
 
     }
 
