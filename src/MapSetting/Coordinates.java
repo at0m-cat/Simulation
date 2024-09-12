@@ -1,8 +1,6 @@
 package MapSetting;
 
 import Entity.Entity;
-//import EntityMotion.Node;
-
 import java.util.*;
 
 public class Coordinates {
@@ -15,23 +13,6 @@ public class Coordinates {
         this.vertical = vertical;
     }
 
-    public Coordinates shift(CoordinatesShift shift) {
-        return new Coordinates(this.horizontal + shift.horizontalShift,
-                this.vertical + shift.verticalShift);
-    }
-
-    public boolean canShift(CoordinatesShift shift) {
-        int v = this.vertical + shift.verticalShift;
-        int h = this.horizontal + shift.horizontalShift;
-
-        if ((h <= 0) || (h > GameMap.HORIZONTAL_MAX)) return false;
-        if ((v <= 0) || (v > GameMap.VERTICAL_MAX)) return false;
-        return true;
-    }
-
-    public Set<Coordinates> getAvailableCoordinates() {
-        return null;
-    }
 
     public int distanceTo(Entity entity) {
         Coordinates target = entity.getCoordinates();

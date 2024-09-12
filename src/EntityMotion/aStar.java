@@ -1,5 +1,4 @@
 package EntityMotion;
-import Entity.Creature;
 import MapSetting.Coordinates;
 import MapSetting.GameMap;
 import java.util.*;

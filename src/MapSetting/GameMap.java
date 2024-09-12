@@ -13,8 +13,6 @@ public class GameMap {
 
     public void setEntities(Entity entity) {
         entities.put(entity.coordinates, entity);
-//        entities.put(coordinates, entity);
-//        entity.coordinates = coordinates;
     }
 
     public void setEntities(Coordinates coordinates, Entity entity) {
@@ -113,6 +111,7 @@ public class GameMap {
         if (e == null) {
             return true;
         }
+
         if (e.target.equals(Target.YES)) {
             return true;
         }
