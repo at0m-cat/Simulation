@@ -20,31 +20,7 @@ public class CreationWorld implements GameActions {
         mapConsoleRenderer.renderer(gameMap);
     }
 
-    private Coordinates getCoordinatesMap() {
-        return gameMap.getSizeMap();
-    }
-
-    private double[] getConstValues() {
-        double PREDATORS = getSquareMap() * 0.1;
-        double HERBIVORES = getSquareMap() * 0.1;
-        double GRASS = getSquareMap() * 0.2;
-        double THREES = getSquareMap() * 0.2;
-        double ROCKS = getSquareMap() * 0.2;
-
-        return new double[]{
-                PREDATORS,
-                HERBIVORES,
-                GRASS,
-                THREES,
-                ROCKS
-        };
-    }
-
-    private int getSquareMap() {
-        return gameMap.getSizeMap().vertical * gameMap.getSizeMap().horizontal;
-    }
-
-    public void setupEntity() {
+    private void setupEntity() {
 
         while (!(gameMap.getAllEntities().size() == getSquareMap() * 0.8)) {
 
@@ -87,8 +63,27 @@ public class CreationWorld implements GameActions {
 
     }
 
+    private Coordinates getCoordinatesMap() {
+        return gameMap.getSizeMap();
+    }
 
-//    initActions - действия, совершаемые перед стартом симуляции.
-//    Пример - расставить объекты и существ на карте
+    private int getSquareMap() {
+        return gameMap.getSizeMap().vertical * gameMap.getSizeMap().horizontal;
+    }
 
+    private double[] getConstValues() {
+        double PREDATORS = getSquareMap() * 0.15;
+        double HERBIVORES = getSquareMap() * 0.25;
+        double GRASS = getSquareMap() * 0.2;
+        double THREES = getSquareMap() * 0.1;
+        double ROCKS = getSquareMap() * 0.1;
+
+        return new double[]{
+                PREDATORS,
+                HERBIVORES,
+                GRASS,
+                THREES,
+                ROCKS
+        };
+    }
 }
