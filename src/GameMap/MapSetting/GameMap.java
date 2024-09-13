@@ -90,34 +90,6 @@ public class GameMap {
         return rocks;
     }
 
-
-    public void setupDefaultEntityPositions() {
-
-        setEntities(new Predator(
-                new Coordinates(new Random().nextInt(1, HORIZONTAL_MAX+1),
-                        new Random().nextInt(1, VERTICAL_MAX+1)), new Random().nextInt(3), 100,1));
-
-        setEntities(new Herbivore(
-                new Coordinates(new Random().nextInt(1,HORIZONTAL_MAX+1),
-                        new Random().nextInt(1,VERTICAL_MAX+1)), new Random().nextInt(3), 100));
-
-        setEntities(new Grass(
-                new Coordinates(new Random().nextInt(1,HORIZONTAL_MAX+1),
-                        new Random().nextInt(1,VERTICAL_MAX+1))));
-
-        setEntities(new Rock(new Coordinates(
-                new Random().nextInt(1,HORIZONTAL_MAX+1),
-                new Random().nextInt(1,VERTICAL_MAX+1)
-        )));
-
-        setEntities(new Three(new Coordinates(
-                new Random().nextInt(HORIZONTAL_MAX-1),
-                new Random().nextInt(VERTICAL_MAX-1)
-        )));
-
-
-    }
-
     public boolean isValidCoordinates(Coordinates coordinates) {
         if (coordinates.horizontal <= 0 || coordinates.horizontal > HORIZONTAL_MAX ||
                 coordinates.vertical <= 0 || coordinates.vertical > VERTICAL_MAX) {
