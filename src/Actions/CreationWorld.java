@@ -24,51 +24,66 @@ public class CreationWorld implements GameActions {
         return gameMap.getSizeMap();
     }
 
+    private double[] getConstValues() {
+        double PREDATORS = getSquareMap() * 0.1;
+        double HERBIVORES = getSquareMap() * 0.1;
+        double GRASS = getSquareMap() * 0.2;
+        double THREES = getSquareMap() * 0.2;
+        double ROCKS = getSquareMap() * 0.2;
+
+        return new double[]{
+                PREDATORS,
+                HERBIVORES,
+                GRASS,
+                THREES,
+                ROCKS
+        };
+    }
+
     private int getSquareMap() {
         return gameMap.getSizeMap().vertical * gameMap.getSizeMap().horizontal;
     }
 
     public void setupEntity() {
 
-        for (int i = 0; i < getSquareMap(); i++) {
+        while (!(gameMap.getAllEntities().size() == getSquareMap() * 0.8)) {
 
             int horizontal = new Random().nextInt(getCoordinatesMap().horizontal) + 1;
             int vertical = new Random().nextInt(getCoordinatesMap().vertical) + 1;
             Coordinates spawnCoordinates = new Coordinates(horizontal, vertical);
 
-            if (gameMap.getAllPredators().size() <= getSquareMap() * 0.1){
-                if (gameMap.getEntityCoordinate(spawnCoordinates) == null){
+            if (gameMap.getAllPredators().size() <= getConstValues()[0]) {
+                if (gameMap.getEntityCoordinate(spawnCoordinates) == null) {
                     entityFactorial.setPredator(gameMap, horizontal, vertical, 1);
                 }
             }
 
-            if (gameMap.getAllHerbivore().size() <= getSquareMap() * 0.1){
-                if (gameMap.getEntityCoordinate(spawnCoordinates) == null){
+            if (gameMap.getAllHerbivore().size() <= getConstValues()[1]) {
+                if (gameMap.getEntityCoordinate(spawnCoordinates) == null) {
                     entityFactorial.setHerbivore(gameMap, horizontal, vertical, 1);
                 }
             }
 
-            if (gameMap.getAllGrass().size() <= getSquareMap() * 0.2){
-                if (gameMap.getEntityCoordinate(spawnCoordinates) == null){
+            if (gameMap.getAllGrass().size() <= getConstValues()[2]) {
+                if (gameMap.getEntityCoordinate(spawnCoordinates) == null) {
                     entityFactorial.setGrass(gameMap, horizontal, vertical);
                 }
             }
 
-            if (gameMap.getAllThree().size() <= getSquareMap() * 0.2){
-                if (gameMap.getEntityCoordinate(spawnCoordinates) == null){
+            if (gameMap.getAllThree().size() <= getConstValues()[3]) {
+                if (gameMap.getEntityCoordinate(spawnCoordinates) == null) {
                     entityFactorial.setThree(gameMap, horizontal, vertical);
                 }
             }
 
-            if (gameMap.getAllRock().size() <= getSquareMap() * 0.4){
-                if (gameMap.getEntityCoordinate(spawnCoordinates) == null){
+            if (gameMap.getAllRock().size() <= getConstValues()[4]) {
+                if (gameMap.getEntityCoordinate(spawnCoordinates) == null) {
                     entityFactorial.setRock(gameMap, horizontal, vertical);
                 }
             }
 
+
         }
-
-
 
     }
 
