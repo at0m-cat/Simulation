@@ -1,15 +1,10 @@
 package Actions;
-
-import Entity.Factory.EntityFactory;
 import Entity.Objects.Herbivore;
 import Entity.Objects.Predator;
 import Entity.Quantity.EntityQuantity;
 import GameMap.MapConsoleRenderer.MapConsoleRenderer;
-import GameMap.MapSetting.Coordinates;
 import GameMap.MapSetting.GameMap;
-
 import java.util.ArrayList;
-import java.util.Random;
 
 public class UpdateEveryTurn implements GameActions {
 

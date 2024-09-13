@@ -7,12 +7,13 @@ import Entity.Objects.Grass;
 import Entity.Objects.Herbivore;
 import Entity.Objects.Predator;
 import GameMap.EntityMotion.aStar;
+import GameMap.EntityMotion.MotionController;
 import GameMap.MapSetting.Coordinates;
 import GameMap.MapSetting.GameMap;
 
 import java.util.*;
 
-abstract public class Creature extends Entity {
+abstract public class Creature extends Entity implements MotionController{
 
     protected int speed; // клетки в секунду
     protected double hp; // здоровье
@@ -22,7 +23,6 @@ abstract public class Creature extends Entity {
         this.speed = speed;
         this.hp = hp;
     }
-
 
 
     protected void makeMove(GameMap map) {
