@@ -59,6 +59,14 @@ public class GameMap {
         return threes;
     }
 
+    public ArrayList<Entity> getAllEntities() {
+        ArrayList<Entity> ent = new ArrayList<>();
+        for (Entity entity : entities.values()){
+            ent.add(entity);
+        }
+        return ent;
+    }
+
     public ArrayList<Herbivore> getAllHerbivore() {
         ArrayList<Herbivore> herbivores = new ArrayList<>();
         for (Entity entity : entities.values()) {
