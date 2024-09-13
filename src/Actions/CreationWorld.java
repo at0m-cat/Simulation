@@ -28,14 +28,7 @@ public class CreationWorld implements GameActions {
         return gameMap.getSizeMap().vertical * gameMap.getSizeMap().horizontal;
     }
 
-    public void create (){
-
-    }
-
-
     public void setupEntity() {
-
-
 
         for (int i = 0; i < getSquareMap(); i++) {
 
@@ -45,13 +38,13 @@ public class CreationWorld implements GameActions {
 
             if (gameMap.getAllPredators().size() <= getSquareMap() * 0.1){
                 if (gameMap.getEntityCoordinate(spawnCoordinates) == null){
-                    entityFactorial.setPredator(gameMap, horizontal, vertical, 2);
+                    entityFactorial.setPredator(gameMap, horizontal, vertical, 1);
                 }
             }
 
             if (gameMap.getAllHerbivore().size() <= getSquareMap() * 0.1){
                 if (gameMap.getEntityCoordinate(spawnCoordinates) == null){
-                    entityFactorial.setHerbivore(gameMap, horizontal, vertical, 2);
+                    entityFactorial.setHerbivore(gameMap, horizontal, vertical, 1);
                 }
             }
 

@@ -23,6 +23,8 @@ abstract public class Creature extends Entity {
         this.hp = hp;
     }
 
+
+
     protected void makeMove(GameMap map) {
 
         if (!isTargetAlive(map)) {
