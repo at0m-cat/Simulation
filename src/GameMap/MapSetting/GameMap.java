@@ -136,9 +136,6 @@ public class GameMap {
         if (entity == null) {
             return true;
         }
-        if (entity.staticEntity.equals(StaticType.YES)) {
-            return false;
-        }
 
 
         return !entities.containsKey(coordinates);
