@@ -1,4 +1,4 @@
-//import GameMap.EntityMotion.aStar;
+//import GameMap.PathToTarget.aStar;
 import Actions.CreationWorld;
 import Actions.UpdateEveryTurn;
 import GameMap.MapSetting.*;

@@ -6,8 +6,8 @@ import Entity.EnumType.TargetType;
 import Entity.Objects.Grass;
 import Entity.Objects.Herbivore;
 import Entity.Objects.Predator;
-import GameMap.EntityMotion.aStar;
-import GameMap.EntityMotion.MotionController;
+import GameMap.PathToTarget.aStar;
+import Entity.EntityMotion.MotionController;
 import GameMap.MapSetting.Coordinates;
 import GameMap.MapSetting.GameMap;
 

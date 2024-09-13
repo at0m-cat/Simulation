@@ -1,4 +1,4 @@
-package GameMap.EntityMotion;
+package GameMap.PathToTarget;
 import Entity.EnumType.FamilyType;
 import GameMap.MapSetting.Coordinates;
 import GameMap.MapSetting.GameMap;

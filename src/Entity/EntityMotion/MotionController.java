@@ -1,4 +1,4 @@
-package GameMap.EntityMotion;
+package Entity.EntityMotion;
 
 public interface MotionController {
 

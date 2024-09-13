@@ -4,7 +4,7 @@ import Entity.*;
 import Entity.EnumType.FamilyType;
 import Entity.EnumType.TargetType;
 import Entity.Objects.*;
-//import GameMap.EntityMotion.*;
+//import Entity.EntityMotion.*;
 
 import java.util.*;
 
