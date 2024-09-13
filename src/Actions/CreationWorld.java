@@ -13,7 +13,7 @@ public class CreationWorld implements GameActions {
     EntityQuantity quantity;
     MapConsoleRenderer mapConsoleRenderer = new MapConsoleRenderer();
     GameMap gameMap;
-    EntityFactory entityFactorial = new EntityFactory();
+    EntityFactory entityFactory = new EntityFactory();
 
     @Override
     public void execute(GameMap gameMap) {
@@ -33,27 +33,27 @@ public class CreationWorld implements GameActions {
 
             if (gameMap.getAllPredators().size() <= quantity.getConstValues()[0]) {
                 if (gameMap.getEntityCoordinate(spawnCoordinates) == null) {
-                    entityFactorial.setPredator(gameMap, horizontal, vertical, 1);
+                    entityFactory.setPredator(gameMap, horizontal, vertical, 1);
                 }
             }
             if (gameMap.getAllHerbivore().size() <= quantity.getConstValues()[1]) {
                 if (gameMap.getEntityCoordinate(spawnCoordinates) == null) {
-                    entityFactorial.setHerbivore(gameMap, horizontal, vertical, 1);
+                    entityFactory.setHerbivore(gameMap, horizontal, vertical, 1);
                 }
             }
             if (gameMap.getAllGrass().size() <= quantity.getConstValues()[2]) {
                 if (gameMap.getEntityCoordinate(spawnCoordinates) == null) {
-                    entityFactorial.setGrass(gameMap, horizontal, vertical);
+                    entityFactory.setGrass(gameMap, horizontal, vertical);
                 }
             }
             if (gameMap.getAllThree().size() <= quantity.getConstValues()[3]) {
                 if (gameMap.getEntityCoordinate(spawnCoordinates) == null) {
-                    entityFactorial.setThree(gameMap, horizontal, vertical);
+                    entityFactory.setThree(gameMap, horizontal, vertical);
                 }
             }
             if (gameMap.getAllRock().size() <= quantity.getConstValues()[4]) {
                 if (gameMap.getEntityCoordinate(spawnCoordinates) == null) {
-                    entityFactorial.setRock(gameMap, horizontal, vertical);
+                    entityFactory.setRock(gameMap, horizontal, vertical);
                 }
             }
         }
@@ -66,20 +66,4 @@ public class CreationWorld implements GameActions {
     private int getSquareMap() {
         return gameMap.getSizeMap().vertical * gameMap.getSizeMap().horizontal;
     }
-
-//    private double[] getConstValues() {
-//        double PREDATORS = getSquareMap() * 0.15;
-//        double HERBIVORES = getSquareMap() * 0.25;
-//        double GRASS = getSquareMap() * 0.2;
-//        double THREES = getSquareMap() * 0.1;
-//        double ROCKS = getSquareMap() * 0.1;
-//
-//        return new double[]{
-//                PREDATORS,
-//                HERBIVORES,
-//                GRASS,
-//                THREES,
-//                ROCKS
-//        };
-//    }
 }
