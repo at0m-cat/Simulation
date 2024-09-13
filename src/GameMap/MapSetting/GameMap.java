@@ -12,8 +12,13 @@ import java.util.*;
 public class GameMap {
     HashMap<Coordinates, Entity> entities = new HashMap<>();
 
-    public static final int HORIZONTAL_MAX = 20;
+    public static final int HORIZONTAL_MAX = 35;
     public static final int VERTICAL_MAX = 20;
+
+    public Coordinates getSizeMap(){
+        return new Coordinates(HORIZONTAL_MAX, VERTICAL_MAX);
+    }
+
 
     public void setEntities(Entity entity) {
         entities.put(entity.coordinates, entity);
@@ -32,6 +37,27 @@ public class GameMap {
             }
         }
         return creatures;
+    }
+
+    public ArrayList<Predator> getAllPredators() {
+        ArrayList<Predator> predators = new ArrayList<>();
+        for (Entity entity : entities.values()) {
+            if (entity instanceof Predator) {
+                predators.add((Predator) entity);
+            }
+        }
+        return predators;
+    }
+
+    public ArrayList<Three> getAllThree(){
+        ArrayList<Three> threes = new ArrayList<>();
+        for (Entity entity : entities.values()) {
+            if (entity instanceof Three) {
+                threes.add((Three) entity);
+
+            }
+        }
+        return threes;
     }
 
     public ArrayList<Herbivore> getAllHerbivore() {
@@ -53,6 +79,17 @@ public class GameMap {
         }
         return grasses;
     }
+
+    public ArrayList<Rock> getAllRock() {
+        ArrayList<Rock> rocks = new ArrayList<>();
+        for (Entity entity : entities.values()) {
+            if (entity instanceof Rock) {
+                rocks.add((Rock) entity);
+            }
+        }
+        return rocks;
+    }
+
 
     public void setupDefaultEntityPositions() {
 

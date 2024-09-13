@@ -4,7 +4,7 @@ class ShiftsCreature {
 
     final int[][] SHIFTS;
 
-    ShiftsCreature() {
+    public ShiftsCreature() {
 
         this.SHIFTS = new int[][]{
                 {0, 1},
@@ -14,7 +14,7 @@ class ShiftsCreature {
         };
     }
 
-    int[][] getShifts() {
+    public int[][] getShifts() {
         return SHIFTS;
     }
 

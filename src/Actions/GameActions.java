@@ -2,6 +2,7 @@ package Actions;
 
 import GameMap.MapSetting.GameMap;
 
-public interface Actions {
+public interface GameActions {
+
      void execute(GameMap gameMap);
 }
