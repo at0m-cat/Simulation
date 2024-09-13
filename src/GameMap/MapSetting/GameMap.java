@@ -2,7 +2,6 @@ package GameMap.MapSetting;
 
 import Entity.*;
 import Entity.EnumType.FamilyType;
-import Entity.EnumType.StaticType;
 import Entity.EnumType.TargetType;
 import Entity.Name.*;
 //import GameMap.EntityMotion.*;
@@ -103,11 +102,12 @@ public class GameMap {
         if (!isValidCoordinates(coordinates)) {
             return false;
         }
-        Entity e = entities.get(coordinates);
-        if (e == null) {
+
+        if (isEntityCoordinates(coordinates)) {
             return true;
         }
 
+        Entity e = entities.get(coordinates);
 
         switch (type){
             case Predator -> {
@@ -125,19 +125,16 @@ public class GameMap {
         return !entities.containsKey(coordinates);
     }
 
-
-    public boolean isSquareEmptyForPrintMap(Coordinates coordinates) {
-
-        if (!isValidCoordinates(coordinates)) {
-            return false;
-        }
-
-        Entity entity = entities.get(coordinates);
-        if (entity == null) {
+    public boolean isEntityCoordinates(Coordinates coordinates) {
+        Entity e = entities.get(coordinates);
+        if (e == null) {
             return true;
         }
+        return false;
+    }
 
 
+    public boolean isSquareEmptyForPrintMap(Coordinates coordinates) {
         return !entities.containsKey(coordinates);
     }
 
