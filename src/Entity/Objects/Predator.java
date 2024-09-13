@@ -1,4 +1,4 @@
-package Entity.Name;
+package Entity.Objects;
 
 import Entity.Creature;
 import Entity.EnumType.FamilyType;

@@ -1,10 +1,6 @@
 //import GameMap.EntityMotion.aStar;
 import Actions.CreationWorld;
 import Actions.UpdateEveryTurn;
-import Entity.*;
-import Entity.Name.*;
-import GameMap.MapConsoleRenderer.MapConsoleRenderer;
-import GameMap.MapSetting.Coordinates;
 import GameMap.MapSetting.*;
 
 public class Main {

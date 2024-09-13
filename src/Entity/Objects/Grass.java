@@ -1,4 +1,4 @@
-package Entity.Name;
+package Entity.Objects;
 import Entity.Entity;
 import Entity.EnumType.FamilyType;
 import Entity.EnumType.StaticType;

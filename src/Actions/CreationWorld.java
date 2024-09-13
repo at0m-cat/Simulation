@@ -1,6 +1,7 @@
 package Actions;
 
-import Entity.EntityFactory;
+import Entity.Factory.EntityFactory;
+import Entity.Quantity.EntityQuantity;
 import GameMap.MapConsoleRenderer.MapConsoleRenderer;
 import GameMap.MapSetting.Coordinates;
 import GameMap.MapSetting.GameMap;
@@ -9,6 +10,7 @@ import java.util.Random;
 
 public class CreationWorld implements GameActions {
 
+    EntityQuantity quantity;
     MapConsoleRenderer mapConsoleRenderer = new MapConsoleRenderer();
     GameMap gameMap;
     EntityFactory entityFactorial = new EntityFactory();
@@ -16,11 +18,12 @@ public class CreationWorld implements GameActions {
     @Override
     public void execute(GameMap gameMap) {
         this.gameMap = gameMap;
-        setupEntity();
+        quantity = new EntityQuantity(gameMap);
+        setupAllEntity();
         mapConsoleRenderer.renderer(gameMap);
     }
 
-    private void setupEntity() {
+    private void setupAllEntity() {
 
         while (!(gameMap.getAllEntities().size() == getSquareMap() * 0.8)) {
 
@@ -28,39 +31,32 @@ public class CreationWorld implements GameActions {
             int vertical = new Random().nextInt(getCoordinatesMap().vertical) + 1;
             Coordinates spawnCoordinates = new Coordinates(horizontal, vertical);
 
-            if (gameMap.getAllPredators().size() <= getConstValues()[0]) {
+            if (gameMap.getAllPredators().size() <= quantity.getConstValues()[0]) {
                 if (gameMap.getEntityCoordinate(spawnCoordinates) == null) {
                     entityFactorial.setPredator(gameMap, horizontal, vertical, 1);
                 }
             }
-
-            if (gameMap.getAllHerbivore().size() <= getConstValues()[1]) {
+            if (gameMap.getAllHerbivore().size() <= quantity.getConstValues()[1]) {
                 if (gameMap.getEntityCoordinate(spawnCoordinates) == null) {
                     entityFactorial.setHerbivore(gameMap, horizontal, vertical, 1);
                 }
             }
-
-            if (gameMap.getAllGrass().size() <= getConstValues()[2]) {
+            if (gameMap.getAllGrass().size() <= quantity.getConstValues()[2]) {
                 if (gameMap.getEntityCoordinate(spawnCoordinates) == null) {
                     entityFactorial.setGrass(gameMap, horizontal, vertical);
                 }
             }
-
-            if (gameMap.getAllThree().size() <= getConstValues()[3]) {
+            if (gameMap.getAllThree().size() <= quantity.getConstValues()[3]) {
                 if (gameMap.getEntityCoordinate(spawnCoordinates) == null) {
                     entityFactorial.setThree(gameMap, horizontal, vertical);
                 }
             }
-
-            if (gameMap.getAllRock().size() <= getConstValues()[4]) {
+            if (gameMap.getAllRock().size() <= quantity.getConstValues()[4]) {
                 if (gameMap.getEntityCoordinate(spawnCoordinates) == null) {
                     entityFactorial.setRock(gameMap, horizontal, vertical);
                 }
             }
-
-
         }
-
     }
 
     private Coordinates getCoordinatesMap() {
@@ -71,19 +67,19 @@ public class CreationWorld implements GameActions {
         return gameMap.getSizeMap().vertical * gameMap.getSizeMap().horizontal;
     }
 
-    private double[] getConstValues() {
-        double PREDATORS = getSquareMap() * 0.15;
-        double HERBIVORES = getSquareMap() * 0.25;
-        double GRASS = getSquareMap() * 0.2;
-        double THREES = getSquareMap() * 0.1;
-        double ROCKS = getSquareMap() * 0.1;
-
-        return new double[]{
-                PREDATORS,
-                HERBIVORES,
-                GRASS,
-                THREES,
-                ROCKS
-        };
-    }
+//    private double[] getConstValues() {
+//        double PREDATORS = getSquareMap() * 0.15;
+//        double HERBIVORES = getSquareMap() * 0.25;
+//        double GRASS = getSquareMap() * 0.2;
+//        double THREES = getSquareMap() * 0.1;
+//        double ROCKS = getSquareMap() * 0.1;
+//
+//        return new double[]{
+//                PREDATORS,
+//                HERBIVORES,
+//                GRASS,
+//                THREES,
+//                ROCKS
+//        };
+//    }
 }

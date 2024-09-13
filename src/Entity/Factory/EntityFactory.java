@@ -1,6 +1,6 @@
-package Entity;
+package Entity.Factory;
 
-import Entity.Name.*;
+import Entity.Objects.*;
 import GameMap.MapSetting.Coordinates;
 import GameMap.MapSetting.GameMap;
 

@@ -1,8 +1,7 @@
 package Actions;
 
-import Entity.Creature;
-import Entity.Name.Herbivore;
-import Entity.Name.Predator;
+import Entity.Objects.Herbivore;
+import Entity.Objects.Predator;
 import GameMap.MapConsoleRenderer.MapConsoleRenderer;
 import GameMap.MapSetting.GameMap;
 
@@ -32,6 +31,10 @@ public class UpdateEveryTurn implements GameActions {
             herbivore.makeMove(gameMap);
         }
         System.out.println();
+    }
+
+    private void updateGrass(){
+
     }
 
     

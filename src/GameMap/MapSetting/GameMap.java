@@ -3,7 +3,7 @@ package GameMap.MapSetting;
 import Entity.*;
 import Entity.EnumType.FamilyType;
 import Entity.EnumType.TargetType;
-import Entity.Name.*;
+import Entity.Objects.*;
 //import GameMap.EntityMotion.*;
 
 import java.util.*;
