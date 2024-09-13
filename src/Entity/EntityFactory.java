@@ -4,7 +4,7 @@ import Entity.Name.*;
 import GameMap.MapSetting.Coordinates;
 import GameMap.MapSetting.GameMap;
 
-public class EntityFactorial {
+public class EntityFactory {
 
     public void setPredator(GameMap gameMap, int horizontal, int vertical, int speed) {
         gameMap.setEntities(new Predator(new Coordinates(horizontal, vertical), speed, 2, 2) {

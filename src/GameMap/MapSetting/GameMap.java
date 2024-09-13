@@ -103,7 +103,7 @@ public class GameMap {
             return false;
         }
 
-        if (isEntityCoordinates(coordinates)) {
+        if (isNotEntity(coordinates)) {
             return true;
         }
 
@@ -125,7 +125,7 @@ public class GameMap {
         return !entities.containsKey(coordinates);
     }
 
-    public boolean isEntityCoordinates(Coordinates coordinates) {
+    public boolean isNotEntity(Coordinates coordinates) {
         Entity e = entities.get(coordinates);
         if (e == null) {
             return true;

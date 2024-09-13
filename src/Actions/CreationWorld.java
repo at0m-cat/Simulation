@@ -1,6 +1,6 @@
 package Actions;
 
-import Entity.EntityFactorial;
+import Entity.EntityFactory;
 import GameMap.MapConsoleRenderer.MapConsoleRenderer;
 import GameMap.MapSetting.Coordinates;
 import GameMap.MapSetting.GameMap;
@@ -11,7 +11,7 @@ public class CreationWorld implements GameActions {
 
     MapConsoleRenderer mapConsoleRenderer = new MapConsoleRenderer();
     GameMap gameMap;
-    EntityFactorial entityFactorial = new EntityFactorial();
+    EntityFactory entityFactorial = new EntityFactory();
 
     @Override
     public void execute(GameMap gameMap) {
