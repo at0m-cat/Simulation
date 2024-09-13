@@ -18,6 +18,7 @@ public class UpdateEveryTurn implements GameActions {
     public void execute(GameMap gameMap) {
         this.gameMap = gameMap;
         makeMoveAll();
+        mapConsoleRenderer.renderer(gameMap);
     }
 
     private void makeMoveAll() {
@@ -31,8 +32,9 @@ public class UpdateEveryTurn implements GameActions {
             herbivore.makeMove(gameMap);
         }
         System.out.println();
-        mapConsoleRenderer.renderer(gameMap);
     }
+
+    
 }
 
 //    turnActions - действия, совершаемые каждый ход

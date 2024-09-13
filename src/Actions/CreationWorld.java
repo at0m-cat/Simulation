@@ -30,22 +30,19 @@ public class CreationWorld implements GameActions {
 
     public void setupEntity() {
 
-        int squareMap = getSquareMap();
-
-        while (!(gameMap.getAllEntities().size() == squareMap)) {
+        for (int i = 0; i < getSquareMap(); i++) {
 
             int horizontal = new Random().nextInt(getCoordinatesMap().horizontal) + 1;
             int vertical = new Random().nextInt(getCoordinatesMap().vertical) + 1;
-
             Coordinates spawnCoordinates = new Coordinates(horizontal, vertical);
 
-            if (gameMap.getAllPredators().size() <= getSquareMap() * 0.15){
+            if (gameMap.getAllPredators().size() <= getSquareMap() * 0.1){
                 if (gameMap.getEntityCoordinate(spawnCoordinates) == null){
                     entityFactorial.setPredator(gameMap, horizontal, vertical, 1);
                 }
             }
 
-            if (gameMap.getAllHerbivore().size() <= getSquareMap() * 0.35){
+            if (gameMap.getAllHerbivore().size() <= getSquareMap() * 0.1){
                 if (gameMap.getEntityCoordinate(spawnCoordinates) == null){
                     entityFactorial.setHerbivore(gameMap, horizontal, vertical, 1);
                 }
@@ -63,12 +60,16 @@ public class CreationWorld implements GameActions {
                 }
             }
 
-            if (gameMap.getAllRock().size() <= getSquareMap() * 0.1){
+            if (gameMap.getAllRock().size() <= getSquareMap() * 0.4){
                 if (gameMap.getEntityCoordinate(spawnCoordinates) == null){
                     entityFactorial.setRock(gameMap, horizontal, vertical);
                 }
             }
+
         }
+
+
+
     }
 
 

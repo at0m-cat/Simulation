@@ -17,6 +17,10 @@ public class Main {
         creationWorld.execute(gameMap);
         updateEveryTurn.execute(gameMap);
 
+        for (int i = 0; i < 10; i++){
+            updateEveryTurn.execute(gameMap);
+        }
+
 
 
 //
