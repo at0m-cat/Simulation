@@ -6,8 +6,6 @@ import GameMap.MapSetting.Coordinates;
 
 abstract public class Entity {
 
-    // to private final !
-
     protected Coordinates coordinates;
     public final FamilyType TYPE;
     public final TargetType TARGET_TYPE;

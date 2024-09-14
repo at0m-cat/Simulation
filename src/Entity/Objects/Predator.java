@@ -42,17 +42,14 @@ public class Predator extends Creature {
         }
 
         if (target.getHp() <= attackPower) {
-            target.setHp(0);
-            Murder reproductionToDead = new Murder(gameMap, target.getCoordintes());
-            reproductionToDead.execute(gameMap);
-            satiety = 100;
+            Murder murder = new Murder(gameMap, target.getCoordintes());
+            murder.execute(gameMap);
+            satiety += 20;
             return;
         }
-
+        target.setHp(target.getHp() - attackPower);
         satiety += 2;
 
-
-        target.setHp(target.getHp() - attackPower);
 
         super.contactToTarget(entityTarget, gameMap);
     }
@@ -60,6 +57,11 @@ public class Predator extends Creature {
     @Override
     public boolean isDead() {
         return this.hp <= 0;
+    }
+
+    @Override
+    public boolean isFullHp() {
+        return hp >= 100;
     }
 
     @Override

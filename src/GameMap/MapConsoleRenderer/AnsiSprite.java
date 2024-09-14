@@ -11,7 +11,6 @@ class AnsiSprite {
     static final String ANSI_BACKGROUND_SATIETY_FULL = "\u001b[45m";
     static final String ANSI_BACKGROUND_LOW_HP = "\u001b[46m";
 
-
     static final String ANSI_BACKGROUND_NULL = "\u001b[47m";
     static final String ANSI_RESET_COLOR = "\u001B[0m";
 

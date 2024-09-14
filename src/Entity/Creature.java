@@ -33,6 +33,11 @@ abstract public class Creature extends Entity implements MotionController {
             return;
         }
 
+        if (isFullHp()){
+            setHp(95);
+            return;
+        }
+
         PathToTarget pathToTarget = new PathToTarget(gameMap, coordinates);
         ArrayList<Coordinates> path = pathToTarget.getPath();
 

@@ -51,6 +51,11 @@ public class Herbivore extends Creature implements Comparable<Herbivore> {
     }
 
     @Override
+    public boolean isFullHp() {
+        return hp >= 100;
+    }
+
+    @Override
     public boolean isDead() {
         return this.hp <= 0;
     }
