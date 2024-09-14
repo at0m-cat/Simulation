@@ -16,7 +16,6 @@ public class Predator extends Creature {
     public Predator(Coordinates coordinates) {
 
         super(coordinates, FamilyType.Predator, TargetType.NO);
-        this.motionCounter = 0;
         this.hp = 100;
         this.attackPower = 20;
         this.satiety = 100;
@@ -37,9 +36,6 @@ public class Predator extends Creature {
     protected void contactToTarget(Entity entityTarget, GameMap gameMap) {
 
         Creature target = (Creature) entityTarget;
-
-
-//        System.out.println(hp);
 
         if (isPepful(satiety)) {
             return;
@@ -85,7 +81,6 @@ public class Predator extends Creature {
 
     @Override
     public void motionCounter() {
-        motionCounter++;
         satiety -= 5;
         this.hp -= 5;
     }

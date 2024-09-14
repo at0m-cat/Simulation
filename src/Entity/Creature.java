@@ -14,8 +14,6 @@ abstract public class Creature extends Entity implements MotionController {
 
     protected int speed;
     protected double hp;
-
-    protected int motionCounter;
     protected int satiety;
 
     public Creature(Coordinates coordinates, FamilyType type, TargetType target) {
