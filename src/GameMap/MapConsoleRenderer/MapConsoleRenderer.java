@@ -1,7 +1,8 @@
 package GameMap.MapConsoleRenderer;
 
 import Entity.*;
-import GameMap.MapConsoleRenderer.*;
+import Entity.Objects.Herbivore;
+import Entity.Objects.Predator;
 import GameMap.MapSetting.Coordinates;
 import GameMap.MapSetting.GameMap;
 
@@ -18,7 +19,7 @@ public class MapConsoleRenderer {
                 if (gameMap.isSquareEmptyForPrintMap(coordinates)) {
                     line = "%s%s".formatted(line, getSprite(null));
                 } else {
-                    Entity entity = gameMap.getEntityCoordinate(coordinates);
+                    Entity entity = gameMap.getEntity(coordinates);
                     line = "%s%s".formatted(line, getSprite(entity));
 
                 }
@@ -37,9 +38,30 @@ public class MapConsoleRenderer {
             case Rock -> result = ANSI_BACKGROUND_ROCK + result + ANSI_SMILE_ROCK + result;
             case Three -> result = ANSI_BACKGROUND_THREE + result + ANSI_SMILE_THREE + result;
             case Grass -> result = ANSI_BACKGROUND_GRASS + result + ANSI_SMILE_GRASS + result;
-            case Herbivore -> result = ANSI_BACKGROUND_HERBIVORE + result + ANSI_SMILE_HERBIVORE + result;
-            case Predator -> result = ANSI_BACKGROUND_PREDATOR + result + ANSI_SMILE_PREDATOR + result;
+            case Herbivore -> {
+
+                   double hp = ((Herbivore) entity).getHp();
+                   if (hp < 25){
+                       result = ANSI_BACKGROUND_LOW_HP + result + ANSI_SMILE_HERBIVORE + result;
+                   } else {
+                       result = ANSI_BACKGROUND_HERBIVORE + result + ANSI_SMILE_HERBIVORE + result;
+                   }
+            }
+            case Predator -> {
+                if (entity instanceof Predator) {
+
+                    int satiety = ((Predator) entity).getSatiety();
+                    if (satiety < 70) {
+                        result = ANSI_BACKGROUND_PREDATOR + result + ANSI_SMILE_PREDATOR + result;
+                    } else {
+                        result = ANSI_BACKGROUND_SATIETY_FULL + result + ANSI_SMILE_PREDATOR + result;
+                    }
+                }
+
+            }
+            case DeadSouls -> result = ANSI_BACKGROUND_DEADSOULS + result +  ANSI_SMILE_DEADSOULS + result;
         }
+
         return result;
     }
 

@@ -9,48 +9,26 @@ import java.util.ArrayList;
 
 public class PathToTarget {
 
-    aStar star;
-    GameMap gameMap;
-    FamilyType familyType;
-    Coordinates coordinates;
-    ArrayList<Coordinates> pathToTarget;
-
-    Entity entity;
-
+    private ArrayList<Coordinates> pathToTarget;
 
     public PathToTarget(GameMap gameMap, Coordinates from) {
-        this.coordinates = from;
-        this.entity = gameMap.getEntityCoordinate(coordinates);
-        this.pathToTarget = new ArrayList<>();
-        this.familyType = gameMap.getEntityCoordinate(from).type;
-        this.gameMap = gameMap;
-        star = new aStar(familyType);
+        pathToTarget = new ArrayList<>();
+        execute(gameMap, from);
+    }
+
+    private void execute(GameMap gameMap, Coordinates from) {
+        Entity targetsFor = gameMap.getEntity(from);
+        if (gameMap.getTargets(gameMap, targetsFor).isEmpty()) {
+            pathToTarget = new ArrayList<>();
+        } else {
+            Coordinates coordinatesTo = gameMap.getTargets(gameMap, targetsFor).get(0).getCoordinates();
+            Entity creatureFrom = gameMap.getEntity(from);
+            aStar star = new aStar(creatureFrom);
+            pathToTarget = star.shortestPath(from, coordinatesTo, gameMap);
+        }
     }
 
     public ArrayList<Coordinates> getPath() {
-
-        // пересмотреть структуру
-        // перенести в PathToTarget
-
-        if (gameMap.getEntityCoordinate(coordinates) == null) {
-            return new ArrayList<>();
-        }
-
-
-        pathToTarget = star.shortestPath(coordinates, gameMap.getTargets(gameMap, entity).getFirst().coordinates, gameMap);
-
-//        FamilyType type = map.getEntityCoordinate(coordinates).type;
-//        aStar star = new aStar(type);
-//        ArrayList<Coordinates> path = new ArrayList<>();
-//
-//        if (this instanceof Predator) {
-//            ArrayList<Herbivore> targets = getTargets(map);
-//            path = star.shortestPath(coordinates, targets.getFirst().coordinates, map);
-//        } else if (this instanceof Herbivore) {
-//            ArrayList<Grass> targets = getTargets(map);
-//            path = star.shortestPath(coordinates, targets.getFirst().coordinates, map);
-//        }
-
         return pathToTarget;
     }
 }

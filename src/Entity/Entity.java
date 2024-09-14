@@ -6,7 +6,9 @@ import GameMap.MapSetting.Coordinates;
 
 abstract public class Entity {
 
-    public Coordinates coordinates;
+    // to private final !
+
+    protected Coordinates coordinates;
     public final FamilyType type;
     public final TargetType target;
     public final StaticType staticEntity;
@@ -16,6 +18,22 @@ abstract public class Entity {
         this.type = type;
         this.target = target;
         this.staticEntity = staticEntity;
+    }
+
+    public FamilyType getType() {
+        return type;
+    }
+
+    public Coordinates getCoordintes() {
+        return coordinates;
+    }
+
+    public void setCoordinates(Coordinates coordinates) {
+        this.coordinates = coordinates;
+    }
+
+    public TargetType getTarget() {
+        return target;
     }
 
     public Coordinates getCoordinates() {

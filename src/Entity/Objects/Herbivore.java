@@ -1,5 +1,6 @@
 package Entity.Objects;
 
+import Actions.Reborn;
 import Entity.Creature;
 import Entity.Entity;
 import Entity.EnumType.FamilyType;
@@ -18,27 +19,34 @@ public class Herbivore extends Creature implements Comparable<Herbivore> {
     }
 
     @Override
-    protected void toEat(Entity target) {
-        System.out.println("Herbivore eat");
-        super.toEat(target);
+    protected void contactToTarget(Entity entityTarget, GameMap gameMap) {
+
+
+        if (!isPepful(satiety)){
+            Reborn reborn  = new Reborn(gameMap);
+            reborn.rebornGrass();
+            return;
+        }
+        this.hp += 10;
+        this.satiety += 2;
+        super.contactToTarget(entityTarget, gameMap);
     }
+
 
     @Override
     public void makeMove(GameMap map) {
-        energyСonsumption();
+        becomeEnergetic();
         super.makeMove(map);
     }
 
-
     @Override
-    public int compareTo(Herbivore o) {
-        return Math.abs((coordinates.horizontal - o.coordinates.horizontal)
-                + (coordinates.vertical - o.coordinates.vertical));
+    public boolean isValidTarget(TargetType targetType) {
+        return targetType == TargetType.TargetForHerbivore;
     }
 
     @Override
     public boolean isPepful(int satiety) {
-        return false;
+        return satiety > 70;
     }
 
     @Override
@@ -48,13 +56,14 @@ public class Herbivore extends Creature implements Comparable<Herbivore> {
     }
 
     @Override
-    public void energyСonsumption() {
-        this.hp -= this.speed;
+    public void becomeEnergetic() {
+        this.hp -= this.speed * 2;
 
     }
 
     @Override
-    public void stop() {
-
+    public int compareTo(Herbivore o) {
+        return Math.abs((coordinates.horizontal - o.coordinates.horizontal)
+                + (coordinates.vertical - o.coordinates.vertical));
     }
 }

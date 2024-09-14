@@ -32,27 +32,27 @@ public class CreationWorld implements GameActions {
             Coordinates spawnCoordinates = new Coordinates(horizontal, vertical);
 
             if (gameMap.getAllPredators().size() <= quantity.getConstValues()[0]) {
-                if (gameMap.getEntityCoordinate(spawnCoordinates) == null) {
+                if (gameMap.getEntity(spawnCoordinates) == null) {
                     entityFactory.setPredator(gameMap, horizontal, vertical, 1);
                 }
             }
             if (gameMap.getAllHerbivore().size() <= quantity.getConstValues()[1]) {
-                if (gameMap.getEntityCoordinate(spawnCoordinates) == null) {
+                if (gameMap.getEntity(spawnCoordinates) == null) {
                     entityFactory.setHerbivore(gameMap, horizontal, vertical, 1);
                 }
             }
             if (gameMap.getAllGrass().size() <= quantity.getConstValues()[2]) {
-                if (gameMap.getEntityCoordinate(spawnCoordinates) == null) {
+                if (gameMap.getEntity(spawnCoordinates) == null) {
                     entityFactory.setGrass(gameMap, horizontal, vertical);
                 }
             }
             if (gameMap.getAllThree().size() <= quantity.getConstValues()[3]) {
-                if (gameMap.getEntityCoordinate(spawnCoordinates) == null) {
+                if (gameMap.getEntity(spawnCoordinates) == null) {
                     entityFactory.setThree(gameMap, horizontal, vertical);
                 }
             }
             if (gameMap.getAllRock().size() <= quantity.getConstValues()[4]) {
-                if (gameMap.getEntityCoordinate(spawnCoordinates) == null) {
+                if (gameMap.getEntity(spawnCoordinates) == null) {
                     entityFactory.setRock(gameMap, horizontal, vertical);
                 }
             }

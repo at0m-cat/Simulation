@@ -14,18 +14,18 @@ public class GameMap {
     public static final int HORIZONTAL_MAX = 35;
     public static final int VERTICAL_MAX = 20;
 
-    public Coordinates getSizeMap(){
+    public Coordinates getSizeMap() {
         return new Coordinates(HORIZONTAL_MAX, VERTICAL_MAX);
     }
 
 
     public void setEntities(Entity entity) {
-        entities.put(entity.coordinates, entity);
+        entities.put(entity.getCoordintes(), entity);
     }
 
     public void setEntities(Coordinates coordinates, Entity entity) {
         entities.put(coordinates, entity);
-        entity.coordinates = coordinates;
+        entity.setCoordinates(coordinates);
     }
 
     public ArrayList<Creature> getAllCreatures() {
@@ -48,7 +48,7 @@ public class GameMap {
         return predators;
     }
 
-    public ArrayList<Three> getAllThree(){
+    public ArrayList<Three> getAllThree() {
         ArrayList<Three> threes = new ArrayList<>();
         for (Entity entity : entities.values()) {
             if (entity instanceof Three) {
@@ -61,7 +61,7 @@ public class GameMap {
 
     public ArrayList<Entity> getAllEntities() {
         ArrayList<Entity> ent = new ArrayList<>();
-        for (Entity entity : entities.values()){
+        for (Entity entity : entities.values()) {
             ent.add(entity);
         }
         return ent;
@@ -105,40 +105,38 @@ public class GameMap {
         return true;
     }
 
-    public boolean isSquareEmptyForMove(Coordinates coordinates, FamilyType type) {
+    public boolean isSquareEmptyForMove(Coordinates targetCoordinate, Entity activeCreature) {
 
-        if (!isValidCoordinates(coordinates)) {
+        if (!isValidCoordinates(targetCoordinate)) {
             return false;
         }
 
-        if (isNotEntity(coordinates)) {
+        if (isNotEntity(targetCoordinate)) {
             return true;
         }
 
-        Entity e = entities.get(coordinates);
+        Entity e = entities.get(targetCoordinate);
 
-        switch (type){
-            case Predator -> {
-                if (e.target.equals(TargetType.TargetForPredator)){
-                    return true;
-                }
-            }
-            case Herbivore -> {
-                if (e.target.equals(TargetType.TargetForHerbivore)){
-                    return true;
-                }
-            }
+        if (((Creature) activeCreature).isValidTarget(e.target)) {
+            return true;
         }
 
-        return !entities.containsKey(coordinates);
+        return !entities.containsKey(targetCoordinate);
     }
 
     public boolean isNotEntity(Coordinates coordinates) {
         Entity e = entities.get(coordinates);
-        if (e == null) {
-            return true;
+        return e == null;
+    }
+
+    public ArrayList<DeadSouls> getAllDeadSouls() {
+        ArrayList<DeadSouls> deadSouls = new ArrayList<>();
+        for (Entity entity : entities.values()) {
+            if (entity instanceof DeadSouls) {
+                deadSouls.add((DeadSouls) entity);
+            }
         }
-        return false;
+        return deadSouls;
     }
 
     public <T extends Entity> ArrayList<T> getTargets(GameMap map, Entity from) {
@@ -146,13 +144,13 @@ public class GameMap {
 
         // проверить
 
-        if (from instanceof Predator) {
+        if (from.type.equals(FamilyType.Predator)) {
             targets = (ArrayList<T>) map.getAllHerbivore();
-
-        } else if (from instanceof Herbivore) {
+        }
+        if (from.type.equals(FamilyType.Herbivore)) {
             targets = (ArrayList<T>) map.getAllGrass();
         }
-        targets.sort(Comparator.comparingDouble(t -> from.coordinates.distanceTo(t)));
+        targets.sort(Comparator.comparingDouble(t -> from.getCoordinates().distanceTo(t)));
 
         return targets;
     }
@@ -162,7 +160,7 @@ public class GameMap {
         return !entities.containsKey(coordinates);
     }
 
-    public Entity getEntityCoordinate(Coordinates coordinates) {
+    public Entity getEntity(Coordinates coordinates) {
         return entities.get(coordinates);
     }
 
@@ -172,7 +170,7 @@ public class GameMap {
     }
 
     public void moveCreature(Coordinates from, Coordinates to) {
-        Entity entity = getEntityCoordinate(from);
+        Entity entity = getEntity(from);
         if (entity == null) {
             return;
         }

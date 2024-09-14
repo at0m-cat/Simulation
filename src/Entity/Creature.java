@@ -3,11 +3,7 @@ package Entity;
 import Entity.EnumType.FamilyType;
 import Entity.EnumType.StaticType;
 import Entity.EnumType.TargetType;
-import Entity.Objects.Grass;
-import Entity.Objects.Herbivore;
-import Entity.Objects.Predator;
 import GameMap.PathToTarget.PathToTarget;
-import GameMap.PathToTarget.aStar;
 import Entity.EntityMotion.MotionController;
 import GameMap.MapSetting.Coordinates;
 import GameMap.MapSetting.GameMap;
@@ -28,63 +24,91 @@ abstract public class Creature extends Entity implements MotionController {
         this.hp = hp;
     }
 
-    protected void toEat(Entity target) {
+    protected void contactToTarget(Entity entityTarget, GameMap gameMap) {
 
-//        // если сожрали -> dead -> renderer череп (FamilyType DeadEntity)
-//
-//        TargetType target = target.target;
-//
-//        switch (target) {
-//            case TargetType.TargetForPredator -> {
-//                System.out.println(this + " съел " + target);
-//            }
-//
-//            case TargetType.TargetForHerbivore -> {
-//                System.out.println(this + " съел " + target);
-//            }
-//
-//        }
+        // не наступать на цель, если цель - травоядное
+        // наступать на траву только травоядным
 
     }
 
-    protected void makeMove(GameMap map) {
 
-        if (!isTargetAlive(map)) {
+    protected void makeMove(GameMap gameMap) {
+        PathToTarget pathToTarget = new PathToTarget(gameMap, coordinates);
+        ArrayList<Coordinates> path = pathToTarget.getPath();
+
+        if (path.isEmpty()) {
             return;
         }
 
+        if (path.size() > speed + 1) {
+            gameMap.moveCreature(coordinates, path.get(speed));
+        } else {
+
+            if (isTargetContact(gameMap, path.getLast())) {
+                Entity target = gameMap.getEntity(path.getLast());
+                contactToTarget(target, gameMap);
+
+                if (target.getTarget().equals(TargetType.TargetForHerbivore)) {
+                    gameMap.moveCreature(coordinates, path.getLast());
+                }
+            }
+
+        }
+
+    }
+
+
+    private boolean isTargetContact(GameMap map, Coordinates tagetCoordinations) {
+        return map.getEntity(tagetCoordinations) != null;
+    }
+
+
+    public double getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+
+    public double getHp() {
+        return hp;
+    }
+
+    public void setHp(double hp) {
+        this.hp = hp;
+    }
+
+    public abstract boolean isValidTarget(TargetType target);
+
+}
+
+
+//    protected void makeMove(GameMap map) {
+//
+//        if (!isTargetAlive(map)) {
+//            return;
+//        }
+//
 //        if (!isPath(map)) {
 //            return;
 //        }
-
-        PathToTarget pathToTarget = new PathToTarget(map, coordinates);
-        ArrayList<Coordinates> path = pathToTarget.getPath();
-
-        if (path.isEmpty()){
-            return;
-        }
-
-        System.out.println("new path");
-
+//
 //        ArrayList<Coordinates> path = getPathToTarget(map);
-
-        if (path.size() > speed + 1) {
-            map.moveCreature(coordinates, path.get(speed));
-        } else {
-
-            // пересмотреть структуру
-
-            if (isTargetEat(map, path.getLast())){
-                toEat(map.getEntityCoordinate(path.getLast()));
-                map.moveCreature(coordinates, path.getLast());
-            }
-        }
-
-    }
-
-    private boolean isTargetEat(GameMap map, Coordinates coordinates) {
-        return map.getEntityCoordinate(coordinates) != null;
-    }
+//
+//        if (path.size() > speed + 1) {
+//            map.moveCreature(coordinates, path.get(speed));
+//        } else {
+//
+//            // пересмотреть структуру
+//
+//            if (isTargetEat(map, path.getLast())){
+//                toEat(map.getEntityCoordinate(path.getLast()));
+//                map.moveCreature(coordinates, path.getLast());
+//            }
+//        }
+//
+//    }
 
 //    private ArrayList<Coordinates> getPathToTarget(GameMap map) {
 //
@@ -128,34 +152,16 @@ abstract public class Creature extends Entity implements MotionController {
 //        return !getPathToTarget(map).isEmpty();
 //    }
 
-    private boolean isTargetAlive(GameMap map) {
+//    private boolean isTargetAlive(GameMap map) {
+//
+//        if (this instanceof Predator) {
+//            return !map.getAllHerbivore().isEmpty();
+//
+//        }
+//        if (this instanceof Herbivore) {
+//            return !map.getAllGrass().isEmpty();
+//        }
+//
+//        return false;
+//    }
 
-        if (this instanceof Predator) {
-            return !map.getAllHerbivore().isEmpty();
-
-        }
-        if (this instanceof Herbivore) {
-            return !map.getAllGrass().isEmpty();
-        }
-
-        return false;
-    }
-
-
-    public double getSpeed() {
-        return speed;
-    }
-
-    public void setSpeed(int speed) {
-        this.speed = speed;
-    }
-
-    public double getHp() {
-        return hp;
-    }
-
-    public void setHp(double hp) {
-        this.hp = hp;
-    }
-
-}

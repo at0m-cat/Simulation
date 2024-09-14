@@ -13,9 +13,13 @@ public class Main {
         creationWorld.execute(gameMap);
         updateEveryTurn.execute(gameMap);
 
-        for (int i = 0; i < 10; i++){
+        while (!(gameMap.getAllHerbivore().size() <= 25)){
             updateEveryTurn.execute(gameMap);
+
         }
+//
+//        for (int i = 0; i < 10; i++){
+//        }
 
 
 

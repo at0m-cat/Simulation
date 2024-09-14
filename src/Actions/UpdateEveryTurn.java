@@ -1,4 +1,5 @@
 package Actions;
+import Entity.Creature;
 import Entity.Objects.Herbivore;
 import Entity.Objects.Predator;
 import Entity.Quantity.EntityQuantity;

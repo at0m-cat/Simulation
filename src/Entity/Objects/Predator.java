@@ -1,5 +1,6 @@
 package Entity.Objects;
 
+import Actions.Murder;
 import Entity.Creature;
 import Entity.Entity;
 import Entity.EnumType.FamilyType;
@@ -16,7 +17,7 @@ public class Predator extends Creature {
         super(coordinates, FamilyType.Predator, TargetType.NO, speed, hp);
         this.attackPower = attackPower;
         this.motionCounter = 0;
-        this.satiety = 0;
+        this.satiety = 100;
 
     }
 
@@ -28,10 +29,31 @@ public class Predator extends Creature {
         return attackPower;
     }
 
+
     @Override
-    protected void toEat(Entity target) {
-        System.out.println("Predator Eat");
-        super.toEat(target);
+    protected void contactToTarget(Entity entityTarget, GameMap gameMap) {
+
+        Creature target = (Creature) entityTarget;
+
+        becomeEnergetic();
+
+        if (isPepful(satiety)){
+            return;
+        }
+
+        if (target.getHp() <= attackPower) {
+            target.setHp(0);
+            Murder reproductionToDead = new Murder(gameMap, target.getCoordintes());
+            reproductionToDead.execute(gameMap);
+            satiety = 100;
+            return;
+        }
+
+        satiety += 2;
+
+        target.setHp(target.getHp() - attackPower);
+
+        super.contactToTarget(entityTarget, gameMap);
     }
 
     @Override
@@ -41,22 +63,31 @@ public class Predator extends Creature {
     }
 
     @Override
+    public boolean isValidTarget(TargetType targetType) {
+        return targetType == TargetType.TargetForPredator;
+    }
+
+    @Override
     public boolean isPepful(int satiety) {
-        return false;
+        return satiety > 80;
     }
 
     @Override
     public void motionCounter() {
         motionCounter++;
+        satiety -= 2;
     }
 
     @Override
-    public void energyСonsumption() {
-
+    public void becomeEnergetic() {
+        if (satiety < 10){
+            speed += 1;
+        } else {
+            speed = 1;
+        }
     }
 
-    @Override
-    public void stop() {
-
+    public int getSatiety (){
+        return satiety;
     }
 }
