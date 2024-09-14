@@ -9,4 +9,15 @@ public interface MotionController {
 
 
 
+
+
+    abstract void motionCounter(); // считает ходы
+    abstract void energyСonsumption(); // тратить хп за ход
+    abstract boolean isPepful(int satiety);
+
+    abstract void stop();
+
+
+
+
 }

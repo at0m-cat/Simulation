@@ -21,5 +21,10 @@ abstract public class Entity {
     public Coordinates getCoordinates() {
         return this.coordinates;
     }
+
+    @Override
+    public String toString() {
+        return type.toString();
+    }
 }
 

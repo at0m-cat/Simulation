@@ -13,10 +13,13 @@ import GameMap.MapSetting.GameMap;
 
 import java.util.*;
 
-abstract public class Creature extends Entity implements MotionController{
+abstract public class Creature extends Entity implements MotionController {
 
     protected int speed; // клетки в секунду
     protected double hp; // здоровье
+
+    protected int motionCounter;
+    protected int satiety;
 
     public Creature(Coordinates coordinates, FamilyType type, TargetType target, int speed, double hp) {
         super(coordinates, type, target, StaticType.NO);
@@ -24,6 +27,30 @@ abstract public class Creature extends Entity implements MotionController{
         this.hp = hp;
     }
 
+    protected void toEat(Entity entity) {
+
+        TargetType target = entity.target;
+
+        if (this instanceof Predator) {
+        }
+
+
+        switch (target) {
+            case TargetType.TargetForPredator -> {
+                System.out.println(this + " съел " + entity);
+            }
+
+            case TargetType.TargetForHerbivore -> {
+                System.out.println(this + " съел " + entity);
+            }
+
+        }
+
+
+        if (this instanceof Herbivore) {
+
+        }
+    }
 
     protected void makeMove(GameMap map) {
 
@@ -37,10 +64,16 @@ abstract public class Creature extends Entity implements MotionController{
 
         ArrayList<Coordinates> path = getPathToTarget(map);
 
-        if (path.size() > speed) {
+        if (path.size() > speed + 1) {
             map.moveCreature(coordinates, path.get(speed));
         } else {
-            map.moveCreature(coordinates, path.getLast());
+//            map.moveCreature(coordinates, path.getLast());
+            if (map.getEntityCoordinate(path.getLast()) instanceof Entity) {
+                toEat(map.getEntityCoordinate(path.getLast()));
+                map.moveCreature(coordinates, path.getLast());
+            } else {
+                map.moveCreature(coordinates, path.getLast());
+            }
         }
 
     }
@@ -95,6 +128,7 @@ abstract public class Creature extends Entity implements MotionController{
 
         return false;
     }
+
 
     public double getSpeed() {
         return speed;

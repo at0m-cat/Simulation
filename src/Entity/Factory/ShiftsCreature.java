@@ -1,12 +1,15 @@
-package GameMap.PathToTarget;
+package Entity.Factory;
 
-class ShiftsCreature {
+public class ShiftsCreature {
 
-    final int[][] SHIFTS;
+    private final int[][] SHIFTS;
 
     public ShiftsCreature() {
+        this.SHIFTS = setShifts();
+    }
 
-        this.SHIFTS = new int[][]{
+    private int[][] setShifts(){
+        return new int[][]{
                 {0, 1},
                 {1, 0},
                 {0, -1},

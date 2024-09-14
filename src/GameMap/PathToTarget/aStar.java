@@ -1,5 +1,6 @@
 package GameMap.PathToTarget;
 import Entity.EnumType.FamilyType;
+import Entity.Factory.ShiftsCreature;
 import GameMap.MapSetting.Coordinates;
 import GameMap.MapSetting.GameMap;
 import java.util.*;
@@ -12,11 +13,11 @@ public class aStar {
        this.type = type;
     }
 
-    public int heuristic(Coordinates from, Coordinates to) {
+    private int heuristic(Coordinates from, Coordinates to) {
         return Math.abs(from.horizontal - to.horizontal) + Math.abs(from.vertical - to.vertical);
     }
 
-    public ArrayList<Coordinates> constructPath(Node node) {
+    private ArrayList<Coordinates> constructPath(Node node) {
         ArrayList<Coordinates> path = new ArrayList<>();
         while (node != null) {
             path.add(node.coordinates);
@@ -27,8 +28,9 @@ public class aStar {
         return path;
     }
 
-    public List<Coordinates> getNeighbours(Coordinates coordinates, GameMap map) {
+    private List<Coordinates> getNeighbours(Coordinates coordinates, GameMap map) {
         List<Coordinates> neighbours = new ArrayList<>();
+
         ShiftsCreature shiftsCreature = new ShiftsCreature();
 
         int[][] shifts = shiftsCreature.getShifts();

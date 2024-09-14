@@ -12,11 +12,13 @@ public class Herbivore extends Creature implements Comparable<Herbivore> {
 
     public Herbivore(Coordinates coordinates, int speed, double hp) {
         super(coordinates, FamilyType.Herbivore, TargetType.TargetForPredator, speed, hp);
+        this.motionCounter = 0;
+        this.satiety = 0;
     }
-
 
     @Override
     public void makeMove(GameMap map) {
+        energyСonsumption();
         super.makeMove(map);
     }
 
@@ -27,5 +29,25 @@ public class Herbivore extends Creature implements Comparable<Herbivore> {
                 + (coordinates.vertical - o.coordinates.vertical));
     }
 
+    @Override
+    public boolean isPepful(int satiety) {
+        return false;
+    }
 
+    @Override
+    public void motionCounter() {
+
+
+    }
+
+    @Override
+    public void energyСonsumption() {
+        this.hp -= this.speed;
+
+    }
+
+    @Override
+    public void stop() {
+
+    }
 }
