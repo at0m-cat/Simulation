@@ -1,24 +1,20 @@
 package GameMap.PathToTarget;
-import Entity.Creature;
 import Entity.Entity;
-import Entity.EnumType.FamilyType;
-import Entity.Factory.ShiftsCreature;
+import Entity.EntityMotion.ShiftsCreature;
 import GameMap.MapSetting.Coordinates;
 import GameMap.MapSetting.GameMap;
 import java.util.*;
 
 public class aStar {
 
-//    FamilyType type;
     Entity activeCreature;
 
     public aStar(Entity activeCreature) {
-//       this.type = type;
        this.activeCreature = activeCreature;
     }
 
     private int heuristic(Coordinates from, Coordinates to) {
-        return Math.abs(from.horizontal - to.horizontal) + Math.abs(from.vertical - to.vertical);
+        return Math.abs(from.HORIZONTAL - to.HORIZONTAL) + Math.abs(from.VERTICAL - to.VERTICAL);
     }
 
     private ArrayList<Coordinates> constructPath(Node node) {
@@ -28,7 +24,6 @@ public class aStar {
             node = node.parent;
         }
         Collections.reverse(path);
-//        path.remove(path.getFirst());
         return path;
     }
 
@@ -40,8 +35,8 @@ public class aStar {
         int[][] shifts = shiftsCreature.getShifts();
 
         for (int[] shift : shifts) {
-            int newHorizontal = coordinates.horizontal + shift[0];
-            int newVertical = coordinates.vertical + shift[1];
+            int newHorizontal = coordinates.HORIZONTAL + shift[0];
+            int newVertical = coordinates.VERTICAL + shift[1];
             Coordinates neighbor = new Coordinates(newHorizontal, newVertical);
 
             if (map.isSquareEmptyForMove(neighbor, activeCreature) ) {

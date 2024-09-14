@@ -1,5 +1,4 @@
 package Entity;
-
 import Actions.Murder;
 import Entity.EnumType.FamilyType;
 import Entity.EnumType.StaticType;
@@ -13,8 +12,8 @@ import java.util.*;
 
 abstract public class Creature extends Entity implements MotionController {
 
-    protected int speed; // клетки в секунду
-    protected double hp; // здоровье
+    protected int speed;
+    protected double hp;
 
     protected int motionCounter;
     protected int satiety;
@@ -24,13 +23,7 @@ abstract public class Creature extends Entity implements MotionController {
 
     }
 
-
-
     protected void contactToTarget(Entity entityTarget, GameMap gameMap) {
-
-        // не наступать на цель, если цель - травоядное
-        // наступать на траву только травоядным
-
     }
 
 
@@ -39,7 +32,6 @@ abstract public class Creature extends Entity implements MotionController {
         if (isDead()){
             Murder murder = new Murder(gameMap, coordinates);
             murder.execute(gameMap);
-            System.out.println("DEAD" + " " + type);
             return;
         }
 
@@ -63,19 +55,10 @@ abstract public class Creature extends Entity implements MotionController {
 
     }
 
-
     private boolean isTargetContact(GameMap map, Coordinates tagetCoordinations) {
         return map.getEntity(tagetCoordinations) != null;
     }
 
-
-    public double getSpeed() {
-        return speed;
-    }
-
-    public void setSpeed(int speed) {
-        this.speed = speed;
-    }
 
     public double getHp() {
         return hp;

@@ -1,4 +1,4 @@
-package Entity.Factory;
+package Entity.EntityMotion;
 
 public class ShiftsCreature {
 

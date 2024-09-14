@@ -34,7 +34,7 @@ public class MapConsoleRenderer {
         if (entity == null) {
             return result = ANSI_BACKGROUND_NULL + result + ANSI_SMILE_NULL + result;
         }
-        switch (entity.type) {
+        switch (entity.TYPE) {
             case Rock -> result = ANSI_BACKGROUND_ROCK + result + ANSI_SMILE_ROCK + result;
             case Three -> result = ANSI_BACKGROUND_THREE + result + ANSI_SMILE_THREE + result;
             case Grass -> result = ANSI_BACKGROUND_GRASS + result + ANSI_SMILE_GRASS + result;

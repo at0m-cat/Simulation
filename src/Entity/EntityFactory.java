@@ -1,4 +1,4 @@
-package Entity.Factory;
+package Entity;
 
 import Entity.Objects.*;
 import GameMap.MapSetting.Coordinates;

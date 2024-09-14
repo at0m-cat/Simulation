@@ -9,19 +9,15 @@ abstract public class Entity {
     // to private final !
 
     protected Coordinates coordinates;
-    public final FamilyType type;
-    public final TargetType target;
-    public final StaticType staticEntity;
+    public final FamilyType TYPE;
+    public final TargetType TARGET_TYPE;
+    public final StaticType STATIC_TYPE;
 
     public Entity(Coordinates coordinates, FamilyType type, TargetType target, StaticType staticEntity) {
         this.coordinates = coordinates;
-        this.type = type;
-        this.target = target;
-        this.staticEntity = staticEntity;
-    }
-
-    public FamilyType getType() {
-        return type;
+        this.TYPE = type;
+        this.TARGET_TYPE = target;
+        this.STATIC_TYPE = staticEntity;
     }
 
     public Coordinates getCoordintes() {
@@ -32,17 +28,13 @@ abstract public class Entity {
         this.coordinates = coordinates;
     }
 
-    public TargetType getTarget() {
-        return target;
-    }
-
     public Coordinates getCoordinates() {
         return this.coordinates;
     }
 
     @Override
     public String toString() {
-        return type.toString();
+        return TYPE.toString();
     }
 }
 

@@ -1,6 +1,5 @@
 package Entity.Objects;
 
-import Actions.Reborn;
 import Entity.Creature;
 import Entity.Entity;
 import Entity.EnumType.FamilyType;
@@ -81,7 +80,7 @@ public class Herbivore extends Creature implements Comparable<Herbivore> {
 
     @Override
     public int compareTo(Herbivore o) {
-        return Math.abs((coordinates.horizontal - o.coordinates.horizontal)
-                + (coordinates.vertical - o.coordinates.vertical));
+        return Math.abs((coordinates.HORIZONTAL - o.coordinates.HORIZONTAL)
+                + (coordinates.VERTICAL - o.coordinates.VERTICAL));
     }
 }

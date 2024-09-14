@@ -1,4 +1,4 @@
-package Entity.Quantity;
+package Entity;
 
 import GameMap.MapSetting.GameMap;
 
@@ -11,7 +11,7 @@ public class EntityQuantity {
     }
 
     private int getSquareMap() {
-        return gameMap.getSizeMap().horizontal * gameMap.getSizeMap().vertical;
+        return gameMap.getSizeMap().HORIZONTAL * gameMap.getSizeMap().VERTICAL;
     }
 
     public double[] getConstValues() {

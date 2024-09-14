@@ -1,13 +1,9 @@
 package Actions;
 
-import Entity.Objects.DeadSouls;
 import Entity.Objects.Grass;
 import Entity.Objects.Predator;
 import GameMap.MapSetting.Coordinates;
 import GameMap.MapSetting.GameMap;
-
-import java.util.ArrayList;
-import java.util.Random;
 
 public class Reborn implements GameActions{
 
@@ -15,10 +11,6 @@ public class Reborn implements GameActions{
 
     public Reborn(GameMap gameMap) {
         this.gameMap = gameMap;
-    }
-
-    public void rebornHerbivore(){
-
     }
 
     public void rebornGrass (){
@@ -32,7 +24,6 @@ public class Reborn implements GameActions{
             Coordinates toGrass = gameMap.getAllDeadSouls().get(i).getCoordinates();
             gameMap.removeEntity(toGrass);
             gameMap.setEntities(toGrass, new Grass(toGrass));
-            System.out.println(" Reborn Grass");
         }
     }
 
@@ -46,7 +37,6 @@ public class Reborn implements GameActions{
             Coordinates toPredators = gameMap.getAllThree().get(i).getCoordinates();
             gameMap.removeEntity(toPredators);
             gameMap.setEntities(toPredators, new Predator(toPredators));
-            System.out.println(" Reborn Predators");
         }
     }
 

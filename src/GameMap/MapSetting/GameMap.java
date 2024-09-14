@@ -2,7 +2,6 @@ package GameMap.MapSetting;
 
 import Entity.*;
 import Entity.EnumType.FamilyType;
-import Entity.EnumType.TargetType;
 import Entity.Objects.*;
 //import Entity.EntityMotion.*;
 
@@ -49,10 +48,6 @@ public class GameMap {
         return threes;
     }
 
-    public void getNullPosition(){
-
-    }
-
     public ArrayList<Entity> getAllEntities() {
         ArrayList<Entity> ent = new ArrayList<>();
         for (Entity entity : entities.values()) {
@@ -92,8 +87,8 @@ public class GameMap {
     }
 
     public boolean isValidCoordinates(Coordinates coordinates) {
-        if (coordinates.horizontal <= 0 || coordinates.horizontal > HORIZONTAL_MAX ||
-                coordinates.vertical <= 0 || coordinates.vertical > VERTICAL_MAX) {
+        if (coordinates.HORIZONTAL <= 0 || coordinates.HORIZONTAL > HORIZONTAL_MAX ||
+                coordinates.VERTICAL <= 0 || coordinates.VERTICAL > VERTICAL_MAX) {
             return false;
         }
         return true;
@@ -111,7 +106,7 @@ public class GameMap {
 
         Entity e = entities.get(targetCoordinate);
 
-        if (((Creature) activeCreature).isValidTarget(e.target)) {
+        if (((Creature) activeCreature).isValidTarget(e.TARGET_TYPE)) {
             return true;
         }
 
@@ -136,12 +131,10 @@ public class GameMap {
     public <T extends Entity> ArrayList<T> getTargets(GameMap map, Entity from) {
         ArrayList<T> targets = new ArrayList<>();
 
-        // проверить
-
-        if (from.type.equals(FamilyType.Predator)) {
+        if (from.TYPE.equals(FamilyType.Predator)) {
             targets = (ArrayList<T>) map.getAllHerbivore();
         }
-        if (from.type.equals(FamilyType.Herbivore)) {
+        if (from.TYPE.equals(FamilyType.Herbivore)) {
             targets = (ArrayList<T>) map.getAllGrass();
         }
         targets.sort(Comparator.comparingDouble(t -> from.getCoordinates().distanceTo(t)));

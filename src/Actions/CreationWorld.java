@@ -1,7 +1,7 @@
 package Actions;
 
-import Entity.Factory.EntityFactory;
-import Entity.Quantity.EntityQuantity;
+import Entity.EntityFactory;
+import Entity.EntityQuantity;
 import GameMap.MapConsoleRenderer.MapConsoleRenderer;
 import GameMap.MapSetting.Coordinates;
 import GameMap.MapSetting.GameMap;
@@ -27,8 +27,8 @@ public class CreationWorld implements GameActions {
 
         while (!(gameMap.getAllEntities().size() == getSquareMap() * 0.8)) {
 
-            int horizontal = new Random().nextInt(getCoordinatesMap().horizontal) + 1;
-            int vertical = new Random().nextInt(getCoordinatesMap().vertical) + 1;
+            int horizontal = new Random().nextInt(getCoordinatesMap().HORIZONTAL) + 1;
+            int vertical = new Random().nextInt(getCoordinatesMap().VERTICAL) + 1;
             Coordinates spawnCoordinates = new Coordinates(horizontal, vertical);
 
             if (gameMap.getAllPredators().size() <= quantity.getConstValues()[0]) {
@@ -64,6 +64,6 @@ public class CreationWorld implements GameActions {
     }
 
     private int getSquareMap() {
-        return gameMap.getSizeMap().vertical * gameMap.getSizeMap().horizontal;
+        return gameMap.getSizeMap().VERTICAL * gameMap.getSizeMap().HORIZONTAL;
     }
 }

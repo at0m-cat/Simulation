@@ -13,7 +13,7 @@ public class Grass extends Entity implements Comparable<Grass>{
     }
 
     public int compareTo(Grass o) {
-        return Math.abs((coordinates.horizontal - o.coordinates.horizontal)
-                + (coordinates.vertical - o.coordinates.vertical));
+        return Math.abs((coordinates.HORIZONTAL - o.coordinates.HORIZONTAL)
+                + (coordinates.VERTICAL - o.coordinates.VERTICAL));
     }
 }

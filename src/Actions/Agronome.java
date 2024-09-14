@@ -34,7 +34,6 @@ public class Agronome implements GameActions {
            Coordinates threeCoord = threes.get(i).getCoordinates();
            gameMap.removeEntity(threeCoord);
            gameMap.setEntities(threeCoord, new Grass(threeCoord));
-           System.out.println("add three from grass");
        }
     }
 
@@ -46,7 +45,6 @@ public class Agronome implements GameActions {
             Coordinates rockCoord = rocks.get(i).getCoordinates();
             gameMap.removeEntity(rockCoord);
             gameMap.setEntities(rockCoord, new Three(rockCoord));
-            System.out.println("add three from rock");
         }
     }
 }
