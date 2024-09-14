@@ -1,6 +1,7 @@
 package Entity.Objects;
 
 import Entity.Creature;
+import Entity.Entity;
 import Entity.EnumType.FamilyType;
 import Entity.EnumType.TargetType;
 import GameMap.MapSetting.Coordinates;
@@ -25,6 +26,12 @@ public class Predator extends Creature {
 
     public double getAttackPower() {
         return attackPower;
+    }
+
+    @Override
+    protected void toEat(Entity target) {
+        System.out.println("Predator Eat");
+        super.toEat(target);
     }
 
     @Override

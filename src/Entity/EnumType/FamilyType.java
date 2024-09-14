@@ -5,5 +5,6 @@ public enum FamilyType {
     Predator,
     Rock,
     Three,
-    Grass
+    Grass,
+    DeadSouls
 }

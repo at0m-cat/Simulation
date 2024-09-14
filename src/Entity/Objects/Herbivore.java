@@ -1,6 +1,7 @@
 package Entity.Objects;
 
 import Entity.Creature;
+import Entity.Entity;
 import Entity.EnumType.FamilyType;
 import Entity.EnumType.TargetType;
 import GameMap.MapSetting.Coordinates;
@@ -14,6 +15,12 @@ public class Herbivore extends Creature implements Comparable<Herbivore> {
         super(coordinates, FamilyType.Herbivore, TargetType.TargetForPredator, speed, hp);
         this.motionCounter = 0;
         this.satiety = 0;
+    }
+
+    @Override
+    protected void toEat(Entity target) {
+        System.out.println("Herbivore eat");
+        super.toEat(target);
     }
 
     @Override

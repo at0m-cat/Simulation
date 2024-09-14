@@ -141,6 +141,22 @@ public class GameMap {
         return false;
     }
 
+    public <T extends Entity> ArrayList<T> getTargets(GameMap map, Entity from) {
+        ArrayList<T> targets = new ArrayList<>();
+
+        // проверить
+
+        if (from instanceof Predator) {
+            targets = (ArrayList<T>) map.getAllHerbivore();
+
+        } else if (from instanceof Herbivore) {
+            targets = (ArrayList<T>) map.getAllGrass();
+        }
+        targets.sort(Comparator.comparingDouble(t -> from.coordinates.distanceTo(t)));
+
+        return targets;
+    }
+
 
     public boolean isSquareEmptyForPrintMap(Coordinates coordinates) {
         return !entities.containsKey(coordinates);

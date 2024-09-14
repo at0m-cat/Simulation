@@ -6,6 +6,7 @@ import Entity.EnumType.TargetType;
 import Entity.Objects.Grass;
 import Entity.Objects.Herbivore;
 import Entity.Objects.Predator;
+import GameMap.PathToTarget.PathToTarget;
 import GameMap.PathToTarget.aStar;
 import Entity.EntityMotion.MotionController;
 import GameMap.MapSetting.Coordinates;
@@ -27,29 +28,23 @@ abstract public class Creature extends Entity implements MotionController {
         this.hp = hp;
     }
 
-    protected void toEat(Entity entity) {
+    protected void toEat(Entity target) {
 
-        TargetType target = entity.target;
+//        // если сожрали -> dead -> renderer череп (FamilyType DeadEntity)
+//
+//        TargetType target = target.target;
+//
+//        switch (target) {
+//            case TargetType.TargetForPredator -> {
+//                System.out.println(this + " съел " + target);
+//            }
+//
+//            case TargetType.TargetForHerbivore -> {
+//                System.out.println(this + " съел " + target);
+//            }
+//
+//        }
 
-        if (this instanceof Predator) {
-        }
-
-
-        switch (target) {
-            case TargetType.TargetForPredator -> {
-                System.out.println(this + " съел " + entity);
-            }
-
-            case TargetType.TargetForHerbivore -> {
-                System.out.println(this + " съел " + entity);
-            }
-
-        }
-
-
-        if (this instanceof Herbivore) {
-
-        }
     }
 
     protected void makeMove(GameMap map) {
@@ -58,63 +53,80 @@ abstract public class Creature extends Entity implements MotionController {
             return;
         }
 
-        if (!isPath(map)) {
+//        if (!isPath(map)) {
+//            return;
+//        }
+
+        PathToTarget pathToTarget = new PathToTarget(map, coordinates);
+        ArrayList<Coordinates> path = pathToTarget.getPath();
+
+        if (path.isEmpty()){
             return;
         }
 
-        ArrayList<Coordinates> path = getPathToTarget(map);
+        System.out.println("new path");
+
+//        ArrayList<Coordinates> path = getPathToTarget(map);
 
         if (path.size() > speed + 1) {
             map.moveCreature(coordinates, path.get(speed));
         } else {
-//            map.moveCreature(coordinates, path.getLast());
-            if (map.getEntityCoordinate(path.getLast()) instanceof Entity) {
+
+            // пересмотреть структуру
+
+            if (isTargetEat(map, path.getLast())){
                 toEat(map.getEntityCoordinate(path.getLast()));
-                map.moveCreature(coordinates, path.getLast());
-            } else {
                 map.moveCreature(coordinates, path.getLast());
             }
         }
 
     }
 
-    private ArrayList<Coordinates> getPathToTarget(GameMap map) {
-        if (map.getEntityCoordinate(coordinates) == null) {
-            return new ArrayList<>();
-        }
-
-        FamilyType type = map.getEntityCoordinate(coordinates).type;
-        aStar star = new aStar(type);
-        ArrayList<Coordinates> path = new ArrayList<>();
-
-        if (this instanceof Predator) {
-            ArrayList<Herbivore> targets = getCreatureTargets(map);
-            path = star.shortestPath(coordinates, targets.getFirst().coordinates, map);
-        } else if (this instanceof Herbivore) {
-            ArrayList<Grass> targets = getCreatureTargets(map);
-            path = star.shortestPath(coordinates, targets.getFirst().coordinates, map);
-        }
-
-        return path;
+    private boolean isTargetEat(GameMap map, Coordinates coordinates) {
+        return map.getEntityCoordinate(coordinates) != null;
     }
 
-    private <T extends Entity> ArrayList<T> getCreatureTargets(GameMap map) {
-        ArrayList<T> targets = new ArrayList<>();
+//    private ArrayList<Coordinates> getPathToTarget(GameMap map) {
+//
+//        // пересмотреть структуру
+//        // перенести в PathToTarget
+//
+//        if (map.getEntityCoordinate(coordinates) == null) {
+//            return new ArrayList<>();
+//        }
+//
+//        FamilyType type = map.getEntityCoordinate(coordinates).type;
+//        aStar star = new aStar(type);
+//        ArrayList<Coordinates> path = new ArrayList<>();
+//
+//        if (this instanceof Predator) {
+//            ArrayList<Herbivore> targets = getTargets(map);
+//            path = star.shortestPath(coordinates, targets.getFirst().coordinates, map);
+//        } else if (this instanceof Herbivore) {
+//            ArrayList<Grass> targets = getTargets(map);
+//            path = star.shortestPath(coordinates, targets.getFirst().coordinates, map);
+//        }
+//
+//        return path;
+//    }
 
-        if (this instanceof Predator) {
-            targets = (ArrayList<T>) map.getAllHerbivore();
+//    private <T extends Entity> ArrayList<T> getTargets(GameMap map) {
+//        ArrayList<T> targets = new ArrayList<>();
+//
+//        if (this instanceof Predator) {
+//            targets = (ArrayList<T>) map.getAllHerbivore();
+//
+//        } else if (this instanceof Herbivore) {
+//            targets = (ArrayList<T>) map.getAllGrass();
+//        }
+//        targets.sort(Comparator.comparingDouble(t -> coordinates.distanceTo(t)));
+//
+//        return targets;
+//    }
 
-        } else if (this instanceof Herbivore) {
-            targets = (ArrayList<T>) map.getAllGrass();
-        }
-        targets.sort(Comparator.comparingDouble(t -> coordinates.distanceTo(t)));
-
-        return targets;
-    }
-
-    private boolean isPath(GameMap map) {
-        return !getPathToTarget(map).isEmpty();
-    }
+//    private boolean isPath(GameMap map) {
+//        return !getPathToTarget(map).isEmpty();
+//    }
 
     private boolean isTargetAlive(GameMap map) {
 
