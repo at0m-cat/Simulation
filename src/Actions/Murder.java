@@ -18,13 +18,8 @@ public class Murder implements GameActions {
 
     @Override
     public void execute(GameMap gameMap) {
-//        gameMap.setEntities(to, new DeadSouls(to) {
-//        });
-
+        gameMap.removeEntity(to);
         gameMap.setEntities(new DeadSouls(to));
     }
 
-    private void addEntity(Entity newEntity, Coordinates to){
-        gameMap.setEntities(to, newEntity);
-    }
 }

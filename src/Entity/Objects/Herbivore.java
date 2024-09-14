@@ -12,30 +12,35 @@ import GameMap.MapSetting.GameMap;
 public class Herbivore extends Creature implements Comparable<Herbivore> {
 
 
-    public Herbivore(Coordinates coordinates, int speed, double hp) {
-        super(coordinates, FamilyType.Herbivore, TargetType.TargetForPredator, speed, hp);
+    public Herbivore(Coordinates coordinates) {
+        super(coordinates, FamilyType.Herbivore, TargetType.TargetForPredator);
         this.motionCounter = 0;
-        this.satiety = 0;
+        this.satiety = 30;
+        this.hp = 100;
+        this.speed = 1;
     }
 
     @Override
     protected void contactToTarget(Entity entityTarget, GameMap gameMap) {
 
-
-        if (!isPepful(satiety)){
-            Reborn reborn  = new Reborn(gameMap);
-            reborn.rebornGrass();
+        if (isPepful(satiety)) {
             return;
         }
+
+        gameMap.moveCreature(coordinates, entityTarget.getCoordinates());
+        this.satiety += 10;
         this.hp += 10;
-        this.satiety += 2;
+
+
         super.contactToTarget(entityTarget, gameMap);
     }
 
 
     @Override
     public void makeMove(GameMap map) {
+
         becomeEnergetic();
+        motionCounter();
         super.makeMove(map);
     }
 
@@ -46,18 +51,31 @@ public class Herbivore extends Creature implements Comparable<Herbivore> {
 
     @Override
     public boolean isPepful(int satiety) {
-        return satiety > 70;
+        return satiety > 90;
+    }
+
+    @Override
+    public boolean isDead() {
+        return this.hp <= 0;
     }
 
     @Override
     public void motionCounter() {
-
+        motionCounter++;
+        this.satiety -= 1;
+        this.hp -= 1;
 
     }
 
     @Override
     public void becomeEnergetic() {
-        this.hp -= this.speed * 2;
+
+        if (satiety < 10) {
+            speed += 1;
+            this.hp -= 2;
+        } else {
+            speed = 2;
+        }
 
     }
 

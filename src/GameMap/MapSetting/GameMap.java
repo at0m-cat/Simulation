@@ -28,16 +28,6 @@ public class GameMap {
         entity.setCoordinates(coordinates);
     }
 
-    public ArrayList<Creature> getAllCreatures() {
-        ArrayList<Creature> creatures = new ArrayList<>();
-        for (Entity entity : entities.values()) {
-            if (entity instanceof Creature) {
-                creatures.add((Creature) entity);
-            }
-        }
-        return creatures;
-    }
-
     public ArrayList<Predator> getAllPredators() {
         ArrayList<Predator> predators = new ArrayList<>();
         for (Entity entity : entities.values()) {
@@ -57,6 +47,10 @@ public class GameMap {
             }
         }
         return threes;
+    }
+
+    public void getNullPosition(){
+
     }
 
     public ArrayList<Entity> getAllEntities() {

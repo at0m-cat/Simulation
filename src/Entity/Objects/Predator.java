@@ -13,11 +13,14 @@ public class Predator extends Creature {
     private double attackPower;
 
 
-    public Predator(Coordinates coordinates, int speed, double hp, double attackPower) {
-        super(coordinates, FamilyType.Predator, TargetType.NO, speed, hp);
-        this.attackPower = attackPower;
+    public Predator(Coordinates coordinates) {
+
+        super(coordinates, FamilyType.Predator, TargetType.NO);
         this.motionCounter = 0;
+        this.hp = 100;
+        this.attackPower = 20;
         this.satiety = 100;
+        this.speed = 1;
 
     }
 
@@ -35,9 +38,10 @@ public class Predator extends Creature {
 
         Creature target = (Creature) entityTarget;
 
-        becomeEnergetic();
 
-        if (isPepful(satiety)){
+//        System.out.println(hp);
+
+        if (isPepful(satiety)) {
             return;
         }
 
@@ -51,13 +55,20 @@ public class Predator extends Creature {
 
         satiety += 2;
 
+
         target.setHp(target.getHp() - attackPower);
 
         super.contactToTarget(entityTarget, gameMap);
     }
 
     @Override
+    public boolean isDead() {
+        return this.hp <= 0;
+    }
+
+    @Override
     public void makeMove(GameMap map) {
+        becomeEnergetic();
         motionCounter();
         super.makeMove(map);
     }
@@ -75,19 +86,21 @@ public class Predator extends Creature {
     @Override
     public void motionCounter() {
         motionCounter++;
-        satiety -= 2;
+        satiety -= 5;
+        this.hp -= 5;
     }
 
     @Override
     public void becomeEnergetic() {
-        if (satiety < 10){
-            speed += 1;
+        if (satiety < 10) {
+            speed = 2;
+            this.hp -= 5;
         } else {
             speed = 1;
         }
     }
 
-    public int getSatiety (){
+    public int getSatiety() {
         return satiety;
     }
 }

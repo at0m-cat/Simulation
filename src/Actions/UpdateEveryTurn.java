@@ -1,5 +1,4 @@
 package Actions;
-import Entity.Creature;
 import Entity.Objects.Herbivore;
 import Entity.Objects.Predator;
 import Entity.Quantity.EntityQuantity;
@@ -19,7 +18,39 @@ public class UpdateEveryTurn implements GameActions {
         this.gameMap = gameMap;
         this.entityQuantity = new EntityQuantity(gameMap);
         makeMoveAll();
+        System.out.println();
         mapConsoleRenderer.renderer(gameMap);
+
+        if (gameMap.getAllHerbivore().size() < 30){
+            Agronome agronome = new Agronome(gameMap);
+            agronome.cutTree(gameMap);
+            System.out.println();
+            mapConsoleRenderer.renderer(gameMap);
+        }
+
+        if (gameMap.getAllDeadSouls().size() > 20){
+            Reborn reborn = new Reborn(gameMap);
+            reborn.rebornGrass();
+            System.out.println();
+            mapConsoleRenderer.renderer(gameMap);
+        }
+
+        if (gameMap.getAllPredators().size() < 5){
+            Reborn reborn = new Reborn(gameMap);
+            reborn.rebornPredatorsFromThree();
+            System.out.println();
+            mapConsoleRenderer.renderer(gameMap);
+        }
+
+        if (gameMap.getAllPredators().size() < 2){
+            Agronome agronome = new Agronome(gameMap);
+            agronome.cutRock(gameMap);
+            System.out.println();
+            mapConsoleRenderer.renderer(gameMap);
+        }
+
+
+
 
     }
 
@@ -33,8 +64,8 @@ public class UpdateEveryTurn implements GameActions {
         for (Herbivore herbivore : herbivores) {
             herbivore.makeMove(gameMap);
         }
-        System.out.println();
     }
+
 
     
 }
