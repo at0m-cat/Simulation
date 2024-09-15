@@ -62,3 +62,71 @@ The main class that runs the simulation. It initializes the map, creates entitie
 ## 📃 Сlass relationships
 
 ![My UML Diagram](graphviz.drawio.svg)
+
+## A* Pathfinding Algorithm
+
+The `aStar` class is designed to compute the shortest path for a creature on a game map from one coordinate to another using the A* (A-star) algorithm. It uses a heuristic function to evaluate the most promising path to the target while avoiding obstacles.
+
+- Uses a heuristic based on Manhattan distance.
+- Supports dynamic maps with moving entities.
+- Flexible pathfinding based on the current state of the game map.
+- Efficient priority queue to manage open nodes.
+
+## How It Works
+
+The A* algorithm works as follows:
+1. Uses a **heuristic function** to estimate the distance from the current position to the target.
+2. Explores neighboring cells and tracks the cost to reach each one.
+3. Prioritizes nodes that are closer to the target (based on the sum of cost and heuristic).
+4. Returns the optimal path once the target is reached.
+
+### Example
+
+```java
+import Entity.Objects.Herbivore;
+import Entity.Objects.Predator;
+import GameMap.MapSetting.Coordinates;
+import GameMap.MapSetting.GameMap;
+import GameMap.PathToTarget.aStar;
+import Entity.Entity;
+
+import java.util.ArrayList;
+
+public class Main {
+    public static void main(String[] args) {
+        GameMap map = new GameMap();
+
+        Coordinates start = new Coordinates(13, 17);
+        Coordinates target = new Coordinates(5, 5);
+
+        Entity predator = new Predator(start);
+        Entity herbivore = new Herbivore(target);
+        map.setEntities(predator);
+        map.setEntities(herbivore);
+
+        aStar pathfinder = new aStar(predator);
+        ArrayList<Coordinates> path = pathfinder.shortestPath(start, target, map);
+
+        System.out.println("Shortest path: " + path.toString());
+    }
+}
+```
+
+In this example:
+- A new game map (`GameMap`) is created along with two entity objects (`Entity`).
+- Start and target coordinates are defined.
+- The `aStar` class is used to compute the shortest path between two points on the map.
+
+### Output
+The program will output a list of coordinates (`Coordinates`) representing the shortest path found by the A* algorithm.
+
+```java
+Shortest path: [vertical: 17, horizontal: 13, vertical: 16, horizontal: 13, vertical: 15, horizontal: 13, vertical: 14, horizontal: 13, vertical: 14, horizontal: 12, vertical: 14, horizontal: 11, vertical: 14, horizontal: 10, vertical: 13, horizontal: 10, vertical: 13, horizontal: 9, vertical: 12, horizontal: 9, vertical: 11, horizontal: 9, vertical: 10, horizontal: 9, vertical: 10, horizontal: 8, vertical: 9, horizontal: 8, vertical: 8, horizontal: 8, vertical: 7, horizontal: 8, vertical: 6, horizontal: 8, vertical: 5, horizontal: 8, vertical: 5, horizontal: 7, vertical: 5, horizontal: 6, vertical: 5, horizontal: 5]
+
+Process finished with exit code 0
+```
+
+### Key Components:
+- **`heuristic(Coordinates from, Coordinates to)`**: Calculates the Manhattan distance between two points.
+- **`getNeighbours(Coordinates coordinates, GameMap map)`**: Finds all valid neighboring positions for the entity.
+- **`shortestPath(Coordinates from, Coordinates to, GameMap map)`**: The main method that calculates and returns the shortest path using the A* algorithm.
