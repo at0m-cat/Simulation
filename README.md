@@ -61,4 +61,4 @@ The main class that runs the simulation. It initializes the map, creates entitie
 
 ## 📃 Сlass relationships
 
-![My UML Diagram](graphviz.svg)
+![My UML Diagram](graphviz.drawio.svg)
