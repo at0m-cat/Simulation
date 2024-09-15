@@ -62,4 +62,4 @@
 
 ## 📃 Классовые отношения
 
-![My UML Diagram](graphviz.svg)
+![My UML Diagram](graphviz.drawio.svg)
