@@ -57,7 +57,7 @@ The main class that runs the simulation. It initializes the map, creates entitie
 
 ## 🖥 Example Output
 
-![SimulationOut](SimulationOut.png)
+![SimulationOut](SimulationExample.gif)
 
 ## 📃 Сlass relationships
 
